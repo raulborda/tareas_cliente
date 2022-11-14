@@ -1,7 +1,7 @@
 import { useQuery } from "@apollo/client";
 import { Select } from "antd";
-import { TaskContext } from "context/TaskContext";
-import { GET_ESTADOS_TAREAS } from "graphql/query/estadosTareas";
+import { TaskContext } from "../../../context/TaskContext";
+import { GET_ESTADOS_TAREAS } from "../../../graphql/query/estadosTareas";
 import { useContext, useEffect, useState } from "react";
 
 const StateFilter = ({ filterEnable }) => {

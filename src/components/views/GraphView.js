@@ -4,8 +4,8 @@ import BodyLayout from "../layout/body/BodyLayout";
 import HeaderLayout from "../layout/header/HeaderLayout";
 import QueryResult from "../queryResult/QueryResult";
 import TaskDashboard from "../taskDashboard/TaskDashboard";
-import { TaskContext } from "../..context/TaskContext";
-import { GET_TAREAS_DASHBOARD_IFRAME } from "graphql/query/tareas";
+import { TaskContext } from "../../context/TaskContext";
+import { GET_TAREAS_DASHBOARD_IFRAME } from "../../graphql/query/tareas";
 import { useContext, useEffect, useState } from "react";
 
 const GraphView = () => {

@@ -7,14 +7,14 @@ import {
   UserOutlined,
 } from "@ant-design/icons";
 import { Button, Input, Popconfirm, Popover, Space, Table, Tag } from "antd";
-import { TaskContext } from "context/TaskContext";
+import { TaskContext } from "../../context/TaskContext";
 import { useContext, useState } from "react";
 import moment from "moment";
 import "./index.css";
 import { useMutation } from "@apollo/client";
-import { UPDATE_ESTADO_TAREA } from "graphql/mutation/tareas";
-import OpenNotification from "components/notification/OpenNotification";
-import DetailDrawer from "components/drawer/detailDrawer/DetailDrawer";
+import { UPDATE_ESTADO_TAREA } from "../../graphql/mutation/tareas";
+import OpenNotification from "../notification/OpenNotification";
+import DetailDrawer from "../drawer/detailDrawer/DetailDrawer";
 
 const TaskTable = ({ tareas, queryPoll }) => {
   const [updateEstadoTareaIframeResolver] = useMutation(UPDATE_ESTADO_TAREA);

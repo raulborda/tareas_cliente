@@ -1,5 +1,5 @@
 import { Select } from "antd";
-import { TaskContext } from "context/TaskContext";
+import { TaskContext } from "../../../context/TaskContext";
 import { useContext } from "react";
 
 const UserGroupFilter = ({ listadoGrupos, listadoUsuarios, filterEnable }) => {

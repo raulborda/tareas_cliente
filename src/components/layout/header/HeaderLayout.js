@@ -13,8 +13,8 @@ import {
 } from "@ant-design/icons";
 import { useQuery } from "@apollo/client";
 import { Button, Switch } from "antd";
-import { TaskContext } from "context/TaskContext";
-import { GET_USUARIOS_Y_GRUPOS } from "graphql/query/usuarios";
+import { TaskContext } from "../../../context/TaskContext";
+import { GET_USUARIOS_Y_GRUPOS } from "../../../graphql/query/usuarios";
 import { useContext, useEffect, useState } from "react";
 import DateFilter from "./DateFilter";
 import "./index.css";

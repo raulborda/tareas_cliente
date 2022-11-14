@@ -2,13 +2,13 @@
 import { CheckOutlined } from "@ant-design/icons";
 import { useMutation, useQuery } from "@apollo/client";
 import { Badge, Calendar, List, Popconfirm, Tag } from "antd";
-import QueryResult from "components/queryResult/QueryResult";
-import { TaskContext } from "context/TaskContext";
-import { UPDATE_ESTADO_TAREA } from "graphql/mutation/tareas";
-import { GET_TAREAS_CALENDARIO } from "graphql/query/tareas";
+import QueryResult from "../../queryResult/QueryResult";
+import { TaskContext } from "../../../context/TaskContext";
+import { UPDATE_ESTADO_TAREA } from "../../../graphql/mutation/tareas";
+import { GET_TAREAS_CALENDARIO } from "../../../graphql/query/tareas";
 import moment from "moment";
 import { Fragment, useContext, useEffect, useState } from "react";
-import OpenNotification from "components/notification/OpenNotification";
+import OpenNotification from "../../notification/OpenNotification";
 import "./index.css";
 
 const TaskCalendar = ({ queryPoll }) => {

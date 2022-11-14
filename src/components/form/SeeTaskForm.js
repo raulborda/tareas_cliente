@@ -2,13 +2,13 @@
 /* eslint-disable no-unused-vars */
 import { useQuery } from "@apollo/client";
 import { Card, Col, Form, Row, Tag } from "antd";
-import { TaskContext } from "context/TaskContext";
-import { GET_ORIGENES } from "graphql/query/origenes";
-import { GET_TIPO_TAREA } from "graphql/query/tipoTareas";
-import { GET_USUARIOS } from "graphql/query/usuarios";
+import { TaskContext } from "../../context/TaskContext";
+import { GET_ORIGENES } from "../../graphql/query/origenes";
+import { GET_TIPO_TAREA } from "../../graphql/query/tipoTareas";
+import { GET_USUARIOS } from "../../graphql/query/usuarios";
 import moment from "moment";
 import { useContext, useEffect, useState } from "react";
-import returnExtIcon from "utils/returnExtIcon";
+import returnExtIcon from "../../utils/returnExtIcon";
 import "./index.css";
 
 const SeeTaskForm = ({ task }) => {

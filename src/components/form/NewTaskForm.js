@@ -14,15 +14,15 @@ import {
   TimePicker,
   Upload,
 } from "antd";
-import Note from "components/note/Note";
-import OpenNotification from "components/notification/OpenNotification";
-import { TaskContext } from "context/TaskContext";
-import { NEW_TAREA } from "graphql/mutation/tareas";
-import { GET_CLIENTES_LIMIT, GET_CONTACTOS } from "graphql/query/clientes";
-import { GET_ORIGENES } from "graphql/query/origenes";
-import { GET_TAREAS } from "graphql/query/tareas";
-import { GET_TIPO_TAREA } from "graphql/query/tipoTareas";
-import { GET_USUARIOS } from "graphql/query/usuarios";
+import Note from "../note/Note";
+import OpenNotification from "../notification/OpenNotification";
+import { TaskContext } from "../../context/TaskContext";
+import { NEW_TAREA } from "../../graphql/mutation/tareas";
+import { GET_CLIENTES_LIMIT, GET_CONTACTOS } from "../../graphql/query/clientes";
+import { GET_ORIGENES } from "../../graphql/query/origenes";
+import { GET_TAREAS } from "../../graphql/query/tareas";
+import { GET_TIPO_TAREA } from "../../graphql/query/tipoTareas";
+import { GET_USUARIOS } from "../../graphql/query/usuarios";
 import moment from "moment";
 import { useContext, useEffect, useState } from "react";
 import "./index.css";

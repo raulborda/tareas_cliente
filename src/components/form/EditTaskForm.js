@@ -21,16 +21,16 @@ import {
   TimePicker,
   Upload,
 } from "antd";
-import Note from "components/note/Note";
-import { TaskContext } from "context/TaskContext";
-import { UPDATE_TAREA } from "graphql/mutation/tareas";
-import { DELETE_UPLOAD_TAREA } from "graphql/mutation/upload";
-import { GET_ORIGENES } from "graphql/query/origenes";
-import { GET_TIPO_TAREA } from "graphql/query/tipoTareas";
-import { GET_USUARIOS } from "graphql/query/usuarios";
+import Note from "../note/Note";
+import { TaskContext } from "../../context/TaskContext";
+import { UPDATE_TAREA } from "../../graphql/mutation/tareas";
+import { DELETE_UPLOAD_TAREA } from "../../graphql/mutation/upload";
+import { GET_ORIGENES } from "../../graphql/query/origenes";
+import { GET_TIPO_TAREA } from "../../graphql/query/tipoTareas";
+import { GET_USUARIOS } from "../../graphql/query/usuarios";
 import moment from "moment";
 import { useContext, useEffect, useState } from "react";
-import returnExtIcon from "utils/returnExtIcon";
+import returnExtIcon from "../../utils/returnExtIcon";
 import "./index.css";
 
 const EditTaskForm = ({ task }) => {

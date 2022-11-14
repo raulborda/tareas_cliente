@@ -2,7 +2,7 @@ import { PaperClipOutlined } from "@ant-design/icons";
 import { Timeline } from "antd";
 import moment from "moment";
 import { useEffect, useState } from "react";
-import returnExtIcon from "utils/returnExtIcon";
+import returnExtIcon from "../../../../utils/returnExtIcon";
 
 const UploadItem = ({ uploadData, item }) => {
   const [currentUpload, setCurrentUpload] = useState();

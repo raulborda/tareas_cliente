@@ -3,7 +3,7 @@
 import React, { Fragment, useContext, useEffect, useState } from "react";
 import { Col, Row } from "antd";
 import { useQuill } from "react-quilljs";
-import { TaskContext } from "context/TaskContext";
+import { TaskContext } from "../../context/TaskContext";
 import "react-quill/dist/quill.snow.css";
 
 const Note = ({ editValue, width, height, taskNote }) => {

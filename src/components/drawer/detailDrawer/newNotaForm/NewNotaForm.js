@@ -1,9 +1,9 @@
 import { useMutation } from "@apollo/client";
 import { Button, Col, Form, Radio, Row } from "antd";
-import Note from "components/note/Note";
-import { TaskContext } from "context/TaskContext";
-import { NEW_HISTORIAL_NEGOCIO } from "graphql/mutation/historial";
-import { NEW_NOTA } from "graphql/mutation/notas";
+import Note from "../../../note/Note";
+import { TaskContext } from "../../../../context/TaskContext";
+import { NEW_HISTORIAL_NEGOCIO } from "../../../../graphql/mutation/historial";
+import { NEW_NOTA } from "../../../../graphql/mutation/notas";
 import { useContext } from "react";
 
 const NewNotaForm = ({ idNegocio, closeDrawer }) => {

@@ -16,11 +16,11 @@ import {
   Timeline,
   Tooltip,
 } from "antd";
-import QueryResult from "components/queryResult/QueryResult";
-import { GET_NEGOCIO_CONTENT } from "graphql/query/negocios";
+import QueryResult from "../../../queryResult/QueryResult";
+import { GET_NEGOCIO_CONTENT } from "../../../../graphql/query/negocios";
 import moment from "moment";
 import { useEffect, useState } from "react";
-import { toCapitalize } from "utils/toCapitalize";
+import { toCapitalize } from "../../../../utils/toCapitalize";
 import NewNotaForm from "../newNotaForm/NewNotaForm";
 import CompetidoresItem from "./CompetidoresItem";
 import NoteItem from "./NoteItem";
@@ -29,7 +29,7 @@ import TaskItem from "./TaskItem";
 import UploadItem from "./UploadItem";
 import "./index.css";
 import { useContext } from "react";
-import { TaskContext } from "context/TaskContext";
+import { TaskContext } from "../../../../context/TaskContext";
 
 const DealContent = ({ idNegocio }) => {
   const [dataNegocio, setDataNegocio] = useState();

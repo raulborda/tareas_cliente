@@ -18,3 +18,14 @@ export const GET_CONTACTOS = gql`
     }
   }
 `;
+
+export const GET_CLIENTE_FILTRO = gql `
+  query getTareasPorCliente($idCliente:Int,$filtroFecha:String,$fecha:String,$idEstado:Int){
+    getTareasPorClienteResolver(idCliente:$idCliente,filtroFecha:$filtroFecha,fecha:$fecha,idEstado:$idEstado){
+      idCliente
+      filtroFecha
+      fecha
+      idEstado
+    }
+  }
+`;
