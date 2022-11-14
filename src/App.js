@@ -40,18 +40,21 @@ const App = () => {
   const [filterIniciadas, setFilterIniciadas] = useState(false);
 
 
-  const clienteLS = localStorage.setItem("cliente");
-  console.log(clienteLS);
-
   useEffect(() => {
     const url = window.location;
     const urlSearch = url.search;
+    const localStorage = window.localStorage;
 
     if (urlSearch) {
       const params = urlSearch.split("=");
       const idUserFromParams = params[1];
       setIdUser(Number(idUserFromParams));
       // console.log("Usuario ->", idUserFromParams);
+
+       //idCliente por URL
+       const idClient = localStorage.cliente;
+       setIdCli(Number(idClient));
+       console.log("Cliente ->", idClient);
     }
   }, []);
 
