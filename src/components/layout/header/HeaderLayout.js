@@ -20,11 +20,13 @@ import DateFilter from "./DateFilter";
 import "./index.css";
 import StateFilter from "./StateFilter";
 import UserGroupFilter from "./UserGroupFilter";
+import { GET_CLIENTE_FILTRO } from "../../../graphql/query/clientes";
 
 const HeaderLayout = () => {
   const {
     setTaskDrawerVisible,
     idUser,
+    idCli,
     setViewMode,
     filterEnable,
     setFilterEnable,
@@ -34,6 +36,10 @@ const HeaderLayout = () => {
   const [listadoUsuarios, setListadoUsuarios] = useState([]);
   const [listadoGrupos, setListadoGrupos] = useState([]);
   const [usuarioNormal, setUsuarioNormal] = useState(false);
+
+  const {data: dataCliente} = useQuery(GET_CLIENTE_FILTRO, {
+    variables: {idCliente: idCli}
+  })
 
   const { data } = useQuery(GET_USUARIOS_Y_GRUPOS, {
     variables: { idUsuario: idUser },
@@ -48,6 +54,7 @@ const HeaderLayout = () => {
       if (dataUsuariosYGrupos) {
         setListadoGrupos(dataUsuariosYGrupos.listadoGrupos);
         setListadoUsuarios(dataUsuariosYGrupos.listadoUsuarios);
+        //console.log(dataUsuariosYGrupos.listadoUsuarios)
       } else {
         setUsuarioNormal(true);
       }
@@ -67,7 +74,7 @@ const HeaderLayout = () => {
           defaultChecked
         />
 
-        <Switch
+        {/* <Switch
           style={{ marginLeft: "10px" }}
           onChange={(v) => {
             setFilterEnable(!v);
@@ -75,7 +82,7 @@ const HeaderLayout = () => {
           checkedChildren={<FunnelPlotOutlined />}
           unCheckedChildren={<FunnelPlotOutlined />}
           defaultChecked
-        />
+        /> */}
 
         <DateFilter filterEnable={filterEnable} />
         <StateFilter filterEnable={filterEnable} />

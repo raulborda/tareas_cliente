@@ -16,6 +16,7 @@ const App = () => {
   const currentWeek = `${yearnumber}${weeknumber}`;
 
   const [idUser, setIdUser] = useState();
+  const [idCli, setIdCli] = useState();
   const [taskDrawerVisible, setTaskDrawerVisible] = useState({
     visible: false,
     content: null,
@@ -38,6 +39,10 @@ const App = () => {
   const [queryPollDealContent, setQueryPollDealContent] = useState();
   const [filterIniciadas, setFilterIniciadas] = useState(false);
 
+
+  const clienteLS = localStorage.setItem("cliente");
+  console.log(clienteLS);
+
   useEffect(() => {
     const url = window.location;
     const urlSearch = url.search;
@@ -56,6 +61,7 @@ const App = () => {
         <TaskContext.Provider
           value={{
             idUser,
+            idCli,
             taskDrawerVisible,
             setTaskDrawerVisible,
             noteContent,
