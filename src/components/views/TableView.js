@@ -23,59 +23,68 @@ const TableView = () => {
   //! Para gestionar el switch del filtro, opto por enviar string vacio y 0 en las vars de la query
   //! de esta manera evito tener que estar seteando states y perdiendo el valor anterior
 
+  // const {
+  //   error,
+  //   loading,
+  //   data: dataTareas,
+  //   startPolling,
+  //   stopPolling,
+  // } = useQuery(GET_TAREAS, {
+  //   fetchPolicy: "network-only",
+  //   variables: {
+  //     idUsuario: idUser,
+  //     filtroFecha: filterEnable ? "" : filterDate.mode,
+  //     fecha: filterEnable ? "" : filterDate.date,
+  //     estado: filterEnable ? 0 : filterState,
+  //     idUsuarioFiltro: idUsuarioFiltro,
+  //   },
+  // });
+
   const {
     error,
     loading,
-    data: dataTareas,
+    data: dataCliente,
     startPolling,
     stopPolling,
-  } = useQuery(GET_TAREAS, {
-    fetchPolicy: "network-only",
-    variables: {
-      idUsuario: idUser,
-      filtroFecha: filterEnable ? "" : filterDate.mode,
-      fecha: filterEnable ? "" : filterDate.date,
-      estado: filterEnable ? 0 : filterState,
-      idUsuarioFiltro: idUsuarioFiltro,
-    },
-  });
-  
-  const {data: dataCliente} = useQuery(GET_CLIENTE_FILTRO, {
+  } = useQuery(GET_CLIENTE_FILTRO, {
     variables: {
       idCliente: idCli,
       filtroFecha: filterEnable ? "" : filterDate.mode,
       fecha: filterEnable ? "" : filterDate.date,
       idEstado: filterEnable ? 0 : filterState,
-    }
-  })
+    },
+  });
 
-  console.log(dataCliente)
+
 
   useEffect(() => {
-    if (dataTareas) {
-      const data = JSON.parse(dataTareas.getTareasIframeResolver);
-      if (!filterIniciadas) {
-        setTareas(data.tareas);
-      } else {
-        setTareas(data.tareasIniciadas);
-      }
-    }
+    // if (dataTareas) {
+    //   const data = JSON.parse(dataTareas.getTareasIframeResolver);
+    //   if (!filterIniciadas) {
+    //     setTareas(data.tareas);
+    //   } else {
+    //     setTareas(data.tareasIniciadas);
+    //   }
+    // }
 
     if (dataCliente) {
-      const dataC = JSON.parse(dataCliente.getTareasPorClienteResolver);
-      console.log(dataC)
-      // if (!filterIniciadas) {
-      //   setTareas(dataC.tareas);
-      // } else {
-      //   setTareas(dataC.tareasIniciadas);
-      // }
+      const data = JSON.parse(dataCliente.getTareasPorClienteResolver);
+      console.log(data);
+      setTareas(data);
     }
-  }, [idUser,idCli, dataTareas,dataCliente, filterEnable, idUsuarioFiltro, filterIniciadas]);
+  }, [
+    idUser,
+    idCli,
+    dataCliente,
+    filterEnable,
+    idUsuarioFiltro,
+    filterIniciadas,
+  ]);
 
   return (
     <>
       <HeaderLayout />
-      <QueryResult error={error} loading={loading} data={dataTareas}>
+      <QueryResult error={error} loading={loading} data={dataCliente}>
         <BodyLayout
           queryPoll={{ startPolling, stopPolling }}
           children={

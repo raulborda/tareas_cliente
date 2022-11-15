@@ -236,8 +236,8 @@ const TaskTable = ({ tareas, queryPoll }) => {
     },
     {
       title: "Asignado",
-      key: "asignado",
-      dataIndex: "asignado",
+      key: "asignacion",
+      dataIndex: "asignacion",
       render: (dataIndex, item) => <span>{item.usu_nombre} </span>,
     },
     {
