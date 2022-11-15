@@ -6,10 +6,12 @@ import TaskTable from "../table/TaskTable";
 import { TaskContext } from "../../context/TaskContext";
 import { GET_TAREAS } from "../../graphql/query/tareas";
 import { useContext, useEffect, useState } from "react";
+import { GET_CLIENTE_FILTRO } from "../../graphql/query/tareas";
 
 const TableView = () => {
   const {
     idUser,
+    idCli,
     filterDate,
     filterState,
     filterEnable,
@@ -37,6 +39,17 @@ const TableView = () => {
       idUsuarioFiltro: idUsuarioFiltro,
     },
   });
+  
+  const {data: dataCliente} = useQuery(GET_CLIENTE_FILTRO, {
+    variables: {
+      idCliente: idCli,
+      filtroFecha: filterEnable ? "" : filterDate.mode,
+      fecha: filterEnable ? "" : filterDate.date,
+      idEstado: filterEnable ? 0 : filterState,
+    }
+  })
+
+  console.log(dataCliente)
 
   useEffect(() => {
     if (dataTareas) {
@@ -47,7 +60,17 @@ const TableView = () => {
         setTareas(data.tareasIniciadas);
       }
     }
-  }, [idUser, dataTareas, filterEnable, idUsuarioFiltro, filterIniciadas]);
+
+    if (dataCliente) {
+      const dataC = JSON.parse(dataCliente.getTareasPorClienteResolver);
+      console.log(dataC)
+      // if (!filterIniciadas) {
+      //   setTareas(dataC.tareas);
+      // } else {
+      //   setTareas(dataC.tareasIniciadas);
+      // }
+    }
+  }, [idUser,idCli, dataTareas,dataCliente, filterEnable, idUsuarioFiltro, filterIniciadas]);
 
   return (
     <>

@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import {
   AreaChartOutlined,
   CalendarOutlined,
@@ -20,7 +21,7 @@ import DateFilter from "./DateFilter";
 import "./index.css";
 import StateFilter from "./StateFilter";
 import UserGroupFilter from "./UserGroupFilter";
-import { GET_CLIENTE_FILTRO } from "../../../graphql/query/clientes";
+//import { GET_CLIENTE_FILTRO } from "../../../graphql/query/tareas";
 
 const HeaderLayout = () => {
   const {
@@ -37,9 +38,9 @@ const HeaderLayout = () => {
   const [listadoGrupos, setListadoGrupos] = useState([]);
   const [usuarioNormal, setUsuarioNormal] = useState(false);
 
-  const {data: dataCliente} = useQuery(GET_CLIENTE_FILTRO, {
-    variables: {idCliente: idCli}
-  })
+  // const {data: dataCliente} = useQuery(GET_CLIENTE_FILTRO, {
+  //   variables: {idCliente: idCli}
+  // })
 
   const { data } = useQuery(GET_USUARIOS_Y_GRUPOS, {
     variables: { idUsuario: idUser },
@@ -59,6 +60,10 @@ const HeaderLayout = () => {
         setUsuarioNormal(true);
       }
     }
+
+    // if (dataCliente){
+    //   console.log(JSON.parse(dataCliente.getTareasPorClienteResolver))
+    // }
   }, [data]);
 
   return (

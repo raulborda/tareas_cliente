@@ -18,6 +18,12 @@ export const GET_TAREAS = gql`
   }
 `;
 
+export const GET_CLIENTE_FILTRO = gql `
+  query getTareasPorCliente($idCliente:Int,$filtroFecha:String,$fecha:String,$idEstado:Int){
+    getTareasPorClienteResolver(idCliente:$idCliente,filtroFecha:$filtroFecha,fecha:$fecha,idEstado:$idEstado)
+  }
+`;
+
 export const GET_TAREAS_CALENDARIO = gql`
   query getTareasParaCalendarioIframeResolver($idUsuario: Int, $fecha: String) {
     getTareasParaCalendarioIframeResolver(idUsuario: $idUsuario, fecha: $fecha)
