@@ -154,21 +154,21 @@ const TaskTable = ({ tareas, queryPoll }) => {
           </div>
         );
       },
-      width: 80,
+      width: 70,
     },
     {
       title: "Asunto",
       dataIndex: "tar_asunto",
       key: "tar_asunto",
       ellipsis: true,
-      width: 430,
+      width: 250,
       ...getColumnSearchProps("tar_asunto"),
     },
     {
       title: "Cliente",
       dataIndex: "cli_nombre",
       key: "cli_nombre",
-      width: 250,
+      width: 150,
       ...getColumnSearchProps("cli_nombre"),
       render: (dataIndex, item) => {
         return (
@@ -199,6 +199,7 @@ const TaskTable = ({ tareas, queryPoll }) => {
     {
       title: "Fuente",
       key: "fuente",
+      width: 80,
       dataIndex: "ori_id",
       render: (dataIndex, item) => (
         <Tag color={item.ori_color} key={"key"}>
@@ -209,6 +210,7 @@ const TaskTable = ({ tareas, queryPoll }) => {
     {
       title: "Creación",
       key: "fechaCreacion",
+      width: 70,
       dataIndex: "tar_fecha",
       sorter: (a, b) => a.tar_fecha.localeCompare(b.tar_fecha),
       showSorterTooltip: false,
@@ -221,7 +223,7 @@ const TaskTable = ({ tareas, queryPoll }) => {
       key: "fechaVto",
       dataIndex: "tar_vencimiento",
       showSorterTooltip: false,
-      width: 150,
+      width: 70,
       sorter: (a, b) => a.tar_vencimiento.localeCompare(b.tar_vencimiento),
       render: (dataIndex, item) => (
         <div className="vencimiento-wrapper">
@@ -235,14 +237,26 @@ const TaskTable = ({ tareas, queryPoll }) => {
       ),
     },
     {
-      title: "Asignado",
-      key: "asignacion",
-      dataIndex: "asignacion",
-      render: (dataIndex, item) => <span>{item.usu_nombre} </span>,
+      title: "Hora",
+      key: "horaVto",
+      dataIndex: "tar_horavencimiento",
+      showSorterTooltip: false,
+      width: 50,
+      sorter: (a, b) => {
+        a.tar_horavencimiento.localeCompare(b.tar_horavencimiento);
+      },
+      render: (dataIndex, item) => (
+        <div className="vencimiento-wrapper">
+          <span style={{ marginRight: "5px" }}>
+            {dataIndex ? moment(dataIndex, "LT").format("HH:mm") : "-"}
+          </span>
+        </div>
+      ),
     },
     {
       title: "Módulo",
       key: "modori",
+      width: 80,
       dataIndex: "mod_id",
       render: (dataIndex, item) => {
         return (
@@ -259,6 +273,7 @@ const TaskTable = ({ tareas, queryPoll }) => {
     {
       title: "",
       key: "",
+      width: 80,
       render: (dataIndex, item) => (
         <div className="options-wrapper">
           <EyeOutlined
