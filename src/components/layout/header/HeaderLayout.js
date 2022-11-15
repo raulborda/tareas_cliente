@@ -97,7 +97,7 @@ const HeaderLayout = () => {
         >
           <MenuOutlined />
         </Button>
-
+{/* 
         <Button
           onClick={() =>
             setTaskDrawerVisible({ visible: true, content: "Mis Tareas" })
@@ -112,7 +112,7 @@ const HeaderLayout = () => {
           className="boton-iconos"
         >
           <AreaChartOutlined />
-        </Button>
+        </Button> */}
         <Button
           type="primary"
           style={{ marginLeft: 5 }}
