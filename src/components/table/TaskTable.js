@@ -253,6 +253,13 @@ const TaskTable = ({ tareas, queryPoll }) => {
         </div>
       ),
     },
+    // {
+    //   title: "Asignado",
+    //   key: "asignacion",
+    //   dataIndex: "asignacion",
+    //   width: 80,
+    //   render: (dataIndex, item) => <span>{item.usu_nombre} </span>,
+    // },
     {
       title: "Módulo",
       key: "modori",

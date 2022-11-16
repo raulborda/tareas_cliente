@@ -63,14 +63,14 @@ const HeaderLayout = () => {
     <div className="top-panel-wrapper">
       <span></span>
       <div className="top-panel-buttons">
-        <Switch
+        {/* <Switch
           onChange={(v) => {
             setFilterIniciadas(!v);
           }}
           checkedChildren={<UserAddOutlined />}
           unCheckedChildren={<UsergroupAddOutlined />}
           defaultChecked
-        />
+        /> */}
 
         <DateFilter filterEnable={filterEnable} />
         <StateFilter filterEnable={filterEnable} />
