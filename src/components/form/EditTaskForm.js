@@ -32,8 +32,9 @@ import moment from "moment";
 import { useContext, useEffect, useState } from "react";
 import returnExtIcon from "../../utils/returnExtIcon";
 import "./index.css";
+import OpenNotification from "../notification/OpenNotification";
 
-const EditTaskForm = ({ task }) => {
+const EditTaskForm = ({ task, queryPoll }) => {
   const { setTaskDrawerVisible, noteContent, idUser } = useContext(TaskContext);
 
   const [origenes, setOrigenes] = useState([]);
@@ -46,7 +47,27 @@ const EditTaskForm = ({ task }) => {
   const [form] = Form.useForm();
 
   const [deleteUploadDeTareaIframeResolver] = useMutation(DELETE_UPLOAD_TAREA);
-  const [updateTareaResolver] = useMutation(UPDATE_TAREA);
+  const [updateTareaResolver] = useMutation(UPDATE_TAREA, {
+    onCompleted: () => {
+      if (queryPoll) {
+        const { startPolling, stopPolling } = queryPoll;
+
+        startPolling(1000);
+
+        setTimeout(() => {
+          stopPolling();
+        }, 1000);
+      }
+      OpenNotification(
+        <h4>Tarea editada exitosamente</h4>,
+        null,
+        "topleft",
+        <CheckOutlined style={{ color: "green" }} />,
+        null
+      );
+      setTaskDrawerVisible({ visible: false, content: "" });
+    },
+  });
 
   const { data: dataTipoTareas } = useQuery(GET_TIPO_TAREA, {
     variables: { idCategoria: 1 },
@@ -98,15 +119,15 @@ const EditTaskForm = ({ task }) => {
       inputAdjunto = null;
     }
 
-    // updateTareaResolver({
-    //   variables: {
-    //     idTarea: task.tar_id,
-    //     inputTarea,
-    //     inputAdjunto,
-    //     inputNota,
-    //     idUsuario: idUser,
-    //   },
-    // });
+    updateTareaResolver({
+      variables: {
+        idTarea: task.tar_id,
+        inputTarea,
+        inputAdjunto,
+        inputNota,
+        idUsuario: idUser,
+      },
+    });
   };
 
   const onSearchUsuario = (val) => {
