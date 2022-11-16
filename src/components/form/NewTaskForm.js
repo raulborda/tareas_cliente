@@ -20,7 +20,6 @@ import { TaskContext } from "../../context/TaskContext";
 import { NEW_TAREA } from "../../graphql/mutation/tareas";
 import { GET_CLIENTES_LIMIT, GET_CONTACTOS } from "../../graphql/query/clientes";
 import { GET_ORIGENES } from "../../graphql/query/origenes";
-import { GET_TAREAS } from "../../graphql/query/tareas";
 import { GET_TIPO_TAREA } from "../../graphql/query/tipoTareas";
 import { GET_USUARIOS } from "../../graphql/query/usuarios";
 import moment from "moment";
@@ -28,7 +27,7 @@ import { useContext, useEffect, useState } from "react";
 import "./index.css";
 
 const NewTaskForm = ({ queryPoll }) => {
-  const { idUser, noteContent, setTaskDrawerVisible } = useContext(TaskContext);
+  const { idUser,idCli ,noteContent, setTaskDrawerVisible } = useContext(TaskContext);
 
   const [tipoTareas, setTipoTareas] = useState([]);
   const [searchCliente, setSearchCliente] = useState("");
@@ -117,6 +116,8 @@ const NewTaskForm = ({ queryPoll }) => {
     },
   };
 
+  console.log("Cliente: ",idCli);
+
   const onSearchCliente = (val) => {
     if (val.length >= 3) {
       setSearchCliente(val);
@@ -168,7 +169,7 @@ const NewTaskForm = ({ queryPoll }) => {
           tar_horavencimiento: moment(v.tar_horavencimiento).format("HH:mm"),
           tar_vencimiento: v.tar_vencimiento,
           usu_id: idUser,
-          cli_id: Number(v.cliente),
+          cli_id: idCli,
           con_id: v.contacto ? Number(v.contacto) : null,
           tip_id: Number(v.tip_id),
           pri_id: Number(v.importancia),
@@ -213,7 +214,7 @@ const NewTaskForm = ({ queryPoll }) => {
             autoComplete="off"
             onFinish={(v) => onFinish(v)}
           >
-            <Form.Item
+            {/* <Form.Item
               label="Cliente"
               name="cliente"
               rules={[
@@ -224,6 +225,7 @@ const NewTaskForm = ({ queryPoll }) => {
               ]}
             >
               <Select
+                disabled={true}
                 showSearch
                 allowClear
                 onClear={() => {
@@ -246,7 +248,7 @@ const NewTaskForm = ({ queryPoll }) => {
                     );
                   })}
               </Select>
-            </Form.Item>
+            </Form.Item> */}
 
             <Form.Item label="Contacto" name="contacto">
               <Select disabled={contactos.length > 0 ? false : true}>

@@ -54,6 +54,7 @@ const App = () => {
 
        //idCliente por URL
        const idClient = localStorage.cliente;
+       //setIdCli(6510)
        setIdCli(Number(idClient));
        console.log("Cliente ->", idCli);
     }

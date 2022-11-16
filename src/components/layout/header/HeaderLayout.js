@@ -72,47 +72,8 @@ const HeaderLayout = () => {
           defaultChecked
         />
 
-        {/* <Switch
-          style={{ marginLeft: "10px" }}
-          onChange={(v) => {
-            setFilterEnable(!v);
-          }}
-          checkedChildren={<FunnelPlotOutlined />}
-          unCheckedChildren={<FunnelPlotOutlined />}
-          defaultChecked
-        /> */}
-
         <DateFilter filterEnable={filterEnable} />
         <StateFilter filterEnable={filterEnable} />
-        {/* <UserGroupFilter
-          listadoGrupos={listadoGrupos}
-          listadoUsuarios={listadoUsuarios}
-          filterEnable={usuarioNormal ? usuarioNormal : filterEnable}
-        /> */}
-
-        <Button
-          style={{ marginLeft: 8 }}
-          onClick={() => setViewMode("tableView")}
-          className="boton-iconos"
-        >
-          <MenuOutlined />
-        </Button>
-{/* 
-        <Button
-          onClick={() =>
-            setTaskDrawerVisible({ visible: true, content: "Mis Tareas" })
-          }
-          className="boton-iconos"
-        >
-          <CalendarOutlined />
-        </Button>
-
-        <Button
-          onClick={() => setViewMode("graphView")}
-          className="boton-iconos"
-        >
-          <AreaChartOutlined />
-        </Button> */}
         <Button
           type="primary"
           style={{ marginLeft: 5 }}
