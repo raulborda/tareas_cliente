@@ -78,12 +78,20 @@ const NewTaskForm = ({ queryPoll }) => {
 
   const [getContactos] = useLazyQuery(GET_CONTACTOS);
 
+    const PORT= "4002";
+    const PROTOCOL= window.location.protocol;
+    const HOSTNAME= window.location.hostname;
+    const URL= `${PROTOCOL}//${HOSTNAME}:${PORT}`;
+    // * Original
+    //action: "http://beeapp.binamics.com.ar:4001/files",
+    const actions=`${URL}/files`;
+    console.log(actions);
   const props = {
     //TODO : URL DINAMICA
     name: "archivo",
     multiple: false,
     uploaded: false,
-    action: "http://beeapp.binamics.com.ar:4001/files",
+    action:`${URL}/files`,
     fileList: fList,
     onChange(info) {
       setFlist(info.fileList.slice(-1));
