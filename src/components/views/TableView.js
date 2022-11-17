@@ -4,7 +4,6 @@ import HeaderLayout from "../layout/header/HeaderLayout";
 import QueryResult from "../queryResult/QueryResult";
 import TaskTable from "../table/TaskTable";
 import { TaskContext } from "../../context/TaskContext";
-import { GET_TAREAS } from "../../graphql/query/tareas";
 import { useContext, useEffect, useState } from "react";
 import { GET_CLIENTE_FILTRO } from "../../graphql/query/tareas";
 
@@ -22,23 +21,6 @@ const TableView = () => {
 
   //! Para gestionar el switch del filtro, opto por enviar string vacio y 0 en las vars de la query
   //! de esta manera evito tener que estar seteando states y perdiendo el valor anterior
-
-  // const {
-  //   error,
-  //   loading,
-  //   data: dataTareas,
-  //   startPolling,
-  //   stopPolling,
-  // } = useQuery(GET_TAREAS, {
-  //   fetchPolicy: "network-only",
-  //   variables: {
-  //     idUsuario: idUser,
-  //     filtroFecha: filterEnable ? "" : filterDate.mode,
-  //     fecha: filterEnable ? "" : filterDate.date,
-  //     estado: filterEnable ? 0 : filterState,
-  //     idUsuarioFiltro: idUsuarioFiltro,
-  //   },
-  // });
 
   const {
     error,
