@@ -103,6 +103,7 @@ const EditTaskForm = ({ task, queryPoll }) => {
       est_id: 1,
       usu_id: task.usu_id,
       cli_id: task.cli_id,
+      ori_id: v.fuente,
       ale_id: Number(v.ale_id),
       tar_alertanum: Number(v.tar_alertanum),
       tip_id: Number(v.tip_id) ? Number(v.tip_id) : task.tip_id,
