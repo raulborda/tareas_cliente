@@ -167,6 +167,7 @@ const NewTaskForm = ({ queryPoll }) => {
         inputTarea: {
           tar_asunto: v.tar_asunto,
           tar_horavencimiento: moment(v.tar_horavencimiento).format("HH:mm"),
+          // tar_vencimiento: moment(v.tar_vencimiento).format("YYYY-MM-DD"), este es para .153
           tar_vencimiento: v.tar_vencimiento,
           usu_id: idUser,
           cli_id: idCli,
@@ -214,42 +215,6 @@ const NewTaskForm = ({ queryPoll }) => {
             autoComplete="off"
             onFinish={(v) => onFinish(v)}
           >
-            {/* <Form.Item
-              label="Cliente"
-              name="cliente"
-              rules={[
-                {
-                  required: true,
-                  message: "",
-                },
-              ]}
-            >
-              <Select
-                disabled={true}
-                showSearch
-                allowClear
-                onClear={() => {
-                  setSearchCliente("");
-                  setContactos([]);
-                }}
-                onSearch={onSearchCliente}
-                optionFilterProp="children"
-                filterOption={(input, option) =>
-                  option.children.indexOf(input >= 0)
-                }
-                onChange={(v) => handleChangeCliente(v)}
-              >
-                {clientes &&
-                  clientes.map((item) => {
-                    return (
-                      <Select.Option key={item.cli_id} value={item.cli_id}>
-                        {item.cli_nombre}
-                      </Select.Option>
-                    );
-                  })}
-              </Select>
-            </Form.Item> */}
-
             <Form.Item label="Contacto" name="contacto">
               <Select disabled={contactos.length > 0 ? false : true}>
                 {contactos &&
