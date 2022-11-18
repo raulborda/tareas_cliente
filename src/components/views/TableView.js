@@ -16,6 +16,7 @@ const TableView = () => {
     filterEnable,
     idUsuarioFiltro,
     filterIniciadas,
+    setQueryPollTareas
   } = useContext(TaskContext);
   const [tareas, setTareas] = useState([]);
 
@@ -40,6 +41,7 @@ const TableView = () => {
 
 
   useEffect(() => {
+    setQueryPollTareas({ initial: startPolling, close: stopPolling });
     // if (dataTareas) {
     //   const data = JSON.parse(dataTareas.getTareasIframeResolver);
     //   if (!filterIniciadas) {

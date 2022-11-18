@@ -14,19 +14,19 @@ import {
   TimePicker,
   Upload,
 } from "antd";
-import Note from "components/note/Note";
-import OpenNotification from "components/notification/OpenNotification";
-import { TaskContext } from "context/TaskContext";
-import { NEW_HISTORIAL_NEGOCIO } from "graphql/mutation/historial";
-import { NEW_TAREA, NEW_TAREA_DE_NEGOCIO } from "graphql/mutation/tareas";
-import { GET_CLIENTES_LIMIT, GET_CONTACTOS } from "graphql/query/clientes";
-import { GET_ORIGENES } from "graphql/query/origenes";
-import { GET_TAREAS } from "graphql/query/tareas";
-import { GET_TIPO_TAREA } from "graphql/query/tipoTareas";
-import { GET_USUARIOS } from "graphql/query/usuarios";
+import Note from "../../../note/Note";
+import OpenNotification from "../../../notification/OpenNotification";
+import { TaskContext } from "../../../../context/TaskContext";
+import { NEW_HISTORIAL_NEGOCIO } from "../../../../graphql/mutation/historial";
+import { NEW_TAREA, NEW_TAREA_DE_NEGOCIO } from "../../../../graphql/mutation/tareas";
+import { GET_CLIENTES_LIMIT, GET_CONTACTOS } from "../../../../graphql/query/clientes";
+import { GET_ORIGENES } from "../../../../graphql/query/origenes";
+import { GET_TAREAS } from "../../../../graphql/query/tareas";
+import { GET_TIPO_TAREA } from "../../../../graphql/query/tipoTareas";
+import { GET_USUARIOS } from "../../../../graphql/query/usuarios";
 import moment from "moment";
 import { useContext, useEffect, useState } from "react";
-import { setHistorial } from "utils/setHistorial";
+import { setHistorial } from "../../../../utils/setHistorial";
 
 const NewDealTaskForm = ({ idNegocio, dataNegocio, closeDrawer }) => {
   const PORTENDPOINT = "4001/files";
@@ -36,6 +36,7 @@ const NewDealTaskForm = ({ idNegocio, dataNegocio, closeDrawer }) => {
 
   const {
     idUser,
+    idCli,
     noteContent,
     setNoteContent,
     setTaskDrawerVisible,
@@ -187,7 +188,7 @@ const NewDealTaskForm = ({ idNegocio, dataNegocio, closeDrawer }) => {
           tar_horavencimiento: moment(v.tar_horavencimiento).format("HH:mm"),
           tar_vencimiento: moment(v.tar_vencimiento).format("YYYY-MM-DD"),
           usu_id: idUser,
-          cli_id: Number(dataNeg.cli_id),
+          cli_id: idCli,
           con_id: dataNeg.con_id ? Number(dataNeg.con_id) : null,
           tip_id: Number(v.tip_id),
           pri_id: Number(v.importancia),

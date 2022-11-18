@@ -39,3 +39,33 @@ export const UPDATE_TAREA = gql`
     )
   }
 `;
+
+export const NEW_TAREA_DE_NEGOCIO = gql`
+  mutation newTareaResolver(
+    $inputTarea: tareaInput
+    $idNegocio: Int
+    $idUsuario: Int
+    $idCliente: Int
+    $inputNota: notaInput
+    $inputAdjunto: uploadInput
+    $idContacto: Int
+    $idUsuarioAsignado: Int
+  ) {
+    newTareaResolver(
+      inputTarea: $inputTarea
+      idNegocio: $idNegocio
+      inputNota: $inputNota
+      idUsuario: $idUsuario
+      idCliente: $idCliente
+      inputAdjunto: $inputAdjunto
+      idContacto: $idContacto
+      idUsuarioAsignado: $idUsuarioAsignado
+    )
+  }
+`;
+
+export const TAREA_ANCLADA = gql`
+  mutation tareaAnclado($idTarea: Int, $anclado: Int) {
+    tareaAncladaResolver(idTarea: $idTarea, anclado: $anclado)
+  }
+`;
