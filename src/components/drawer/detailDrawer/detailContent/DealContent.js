@@ -30,6 +30,8 @@ import UploadItem from "./UploadItem";
 import "./index.css";
 import { useContext } from "react";
 import { TaskContext } from "../../../../context/TaskContext";
+import NewDealTaskForm from "../newDealTaskForm/NewDealTaskForm";
+
 
 const DealContent = ({ idNegocio }) => {
   const [dataNegocio, setDataNegocio] = useState();
@@ -42,6 +44,7 @@ const DealContent = ({ idNegocio }) => {
   const [competidoresDeNegocio, setCompetidoresDeNegocio] = useState([]);
 
   const [showDrawerNewNota, setShowDrawerNewNota] = useState(false);
+  const [showDrawerTarea, setShowDrawerTarea] = useState(false);
   const { setQueryPollDealContent } = useContext(TaskContext);
 
   const { data, loading, error, startPolling, stopPolling } = useQuery(
@@ -254,6 +257,13 @@ const DealContent = ({ idNegocio }) => {
           >
             <PlusOutlined /> Nota
           </Button>
+          <Button
+            type="primary"
+            style={{ backgroundColor: "#00B33C", border: "1px solid #00B33C" }}
+            onClick={() => setShowDrawerTarea(!showDrawerTarea)}
+          >
+            <PlusOutlined /> Tarea
+          </Button>
         </Col>
       </Row>
       <Row>
@@ -282,6 +292,19 @@ const DealContent = ({ idNegocio }) => {
           <NewNotaForm
             idNegocio={idNegocio}
             closeDrawer={setShowDrawerNewNota}
+          />
+        </Drawer>
+        <Drawer
+          width={600}
+          title="Nueva tarea de negocio"
+          visible={showDrawerTarea}
+          destroyOnClose={true}
+          onClose={() => setShowDrawerTarea(false)}
+        >
+          <NewDealTaskForm
+            idNegocio={idNegocio}
+            dataNegocio={dataNegocio}
+            closeDrawer={setShowDrawerTarea}
           />
         </Drawer>
       </Row>
