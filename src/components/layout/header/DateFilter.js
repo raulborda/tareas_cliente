@@ -6,8 +6,7 @@ import moment from "moment";
 import "./index.css";
 
 const DateFilter = ({ filterEnable }) => {
-  const { setFilterDate, filterDate } = useContext(TaskContext);
-  const [dropdownText, setDropdownText] = useState("Semana");
+  const { setFilterDate, filterDate, dropdownText, setDropdownText } = useContext(TaskContext);
 
   const handleChangeOptions = (v) => {
     //* las fechas tienen este formato para poder operar en la query
@@ -83,7 +82,7 @@ const DateFilter = ({ filterEnable }) => {
           handleChangeOptions(v);
         }}
       >
-        <Radio.Button value={"date"} onClick={() => setDropdownText("Semana")}>
+        <Radio.Button value={"date"} onClick={() => setDropdownText("Semana")} style={{ marginLeft: "10px" }}>
           Hoy
         </Radio.Button>
 
@@ -118,7 +117,14 @@ const DateFilter = ({ filterEnable }) => {
             </div>
           }
         >
-          <Button>{dropdownText}</Button>
+          <Button
+           className={
+            filterDate.mode !== "date" &&
+            filterDate.mode !== "month" &&
+            "selected-button"
+          }>
+            {dropdownText}
+          </Button>
         </Dropdown>
 
         <Popover

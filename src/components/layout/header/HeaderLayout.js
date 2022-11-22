@@ -32,6 +32,7 @@ const HeaderLayout = () => {
     filterEnable,
     setFilterEnable,
     setFilterIniciadas,
+    filterIniciadas
   } = useContext(TaskContext);
 
   const [listadoUsuarios, setListadoUsuarios] = useState([]);
@@ -71,6 +72,12 @@ const HeaderLayout = () => {
           unCheckedChildren={<UsergroupAddOutlined />}
           defaultChecked
         /> */}
+         <Switch
+          onChange={() => setFilterIniciadas(!filterIniciadas)}
+          checkedChildren={<UserAddOutlined />}
+          unCheckedChildren={<UsergroupAddOutlined />}
+          checked={filterIniciadas}
+        />
 
         <DateFilter filterEnable={filterEnable} />
         <StateFilter filterEnable={filterEnable} />

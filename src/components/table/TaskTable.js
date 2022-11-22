@@ -18,7 +18,7 @@ import DetailDrawer from "../drawer/detailDrawer/DetailDrawer";
 
 const TaskTable = ({ tareas, queryPoll }) => {
   const [updateEstadoTareaIframeResolver] = useMutation(UPDATE_ESTADO_TAREA);
-  const { setTaskDrawerVisible } = useContext(TaskContext);
+  const { setTaskDrawerVisible, filterIniciadas } = useContext(TaskContext);
   const [showDetailDrawer, setShowDetailDrawer] = useState({
     visible: false,
     type: "",
@@ -253,13 +253,20 @@ const TaskTable = ({ tareas, queryPoll }) => {
         </div>
       ),
     },
-    // {
-    //   title: "Asignado",
-    //   key: "asignacion",
-    //   dataIndex: "asignacion",
-    //   width: 80,
-    //   render: (dataIndex, item) => <span>{item.usu_nombre} </span>,
-    // },
+    {
+      title: "Asignado",
+      key: "asignado",
+      dataIndex: "asignado",
+      width: 80,
+      render: (dataIndex, item) => {
+        if (!filterIniciadas) {
+          return <span>{item.asignado} </span>;
+        } else {
+          return <span>{item.iniciado} </span>;
+        }
+       
+      },
+    },
     {
       title: "Módulo",
       key: "modori",

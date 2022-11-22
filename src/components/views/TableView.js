@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useQuery } from "@apollo/client";
 import BodyLayout from "../layout/body/BodyLayout";
 import HeaderLayout from "../layout/header/HeaderLayout";
@@ -35,6 +36,7 @@ const TableView = () => {
       filtroFecha: filterEnable ? "" : filterDate.mode,
       fecha: filterEnable ? "" : filterDate.date,
       idEstado: filterEnable ? 0 : filterState,
+      idUsuario: idUser
     },
   });
 
@@ -42,20 +44,22 @@ const TableView = () => {
 
   useEffect(() => {
     setQueryPollTareas({ initial: startPolling, close: stopPolling });
-    // if (dataTareas) {
-    //   const data = JSON.parse(dataTareas.getTareasIframeResolver);
-    //   if (!filterIniciadas) {
-    //     setTareas(data.tareas);
-    //   } else {
-    //     setTareas(data.tareasIniciadas);
-    //   }
-    // }
-
     if (dataCliente) {
       const data = JSON.parse(dataCliente.getTareasPorClienteResolver);
-      console.log(data);
-      setTareas(data);
+      if (!filterIniciadas) {
+        setTareas(data.tareas);
+        console.log(data.tareas);
+      } else {
+        console.log(data.tareasIniciadas)
+        setTareas(data.tareasIniciadas);
+      }
     }
+
+    // if (dataCliente) {
+    //   const data = JSON.parse(dataCliente.getTareasPorClienteResolver);
+    //   console.log(data);
+    //   setTareas([]);
+    // }
   }, [
     idUser,
     idCli,
