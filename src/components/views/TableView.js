@@ -46,6 +46,7 @@ const TableView = () => {
     setQueryPollTareas({ initial: startPolling, close: stopPolling });
     if (dataCliente) {
       const data = JSON.parse(dataCliente.getTareasPorClienteResolver);
+      console.log(data)
       if (!filterIniciadas) {
         setTareas(data.tareas);
         console.log(data.tareas);

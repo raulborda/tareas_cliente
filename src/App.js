@@ -58,10 +58,10 @@ const App = () => {
        const idClient = localStorage.cliente;
        //.28
        //setIdCli(6510) //A.P.I.N.T.A
-       //setIdCli(2049) //ACONCAGUA 
+       setIdCli(2049) //ACONCAGUA 
        //.153
        //setIdCli(2)
-       setIdCli(Number(idClient));
+       //setIdCli(Number(idClient));
        console.log("Cliente ->", idCli);
     }
   }, []);
