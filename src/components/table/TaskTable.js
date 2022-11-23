@@ -259,12 +259,7 @@ const TaskTable = ({ tareas, queryPoll }) => {
       dataIndex: "asignado",
       width: 80,
       render: (dataIndex, item) => {
-        if (!filterIniciadas) {
-          return <span>{item.asignado} </span>;
-        } else {
-          return <span>{item.iniciado} </span>;
-        }
-       
+        return <span>{item.asignado} </span>;
       },
     },
     {
