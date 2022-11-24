@@ -132,6 +132,7 @@ const DateFilter = ({ filterEnable }) => {
           content={
             <div className="site-calendar-demo-card">
               <Calendar
+                value={""}
                 fullscreen={false}
                 onChange={(v) => {
                   setFilterDate({

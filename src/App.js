@@ -1,5 +1,5 @@
 import { ApolloProvider } from "@apollo/client";
-import { ConfigProvider } from "antd";
+import { Button, ConfigProvider, Modal } from "antd";
 import esES from "antd/es/locale/es_ES";
 import "moment/locale/es";
 import apolloClient from "./apollo/apolloClient";
@@ -41,30 +41,30 @@ const App = () => {
   const [queryPollTareas, setQueryPollTareas] = useState();
   const [dropdownText, setDropdownText] = useState("Semana");
 
-
   useEffect(() => {
     const url = window.location;
     const urlSearch = url.search;
     const localStorage = window.localStorage;
 
     if (urlSearch) {
-      console.log(url);
+      // console.log(url);
       const params = urlSearch.split("=");
       const idUserFromParams = params[1];
       setIdUser(Number(idUserFromParams));
       // console.log("Usuario ->", idUserFromParams);
 
-       //idCliente por URL
-       const idClient = localStorage.cliente;
-       //.28
-       //setIdCli(6510) //A.P.I.N.T.A
-       //setIdCli(2049) //ACONCAGUA 
-       //.153
-       //setIdCli(2)
-       setIdCli(Number(idClient));
-       console.log("Cliente ->", idCli);
+      //idCliente por URL
+      const idClient = localStorage.cliente;
+      //.28
+      //setIdCli(6510) //A.P.I.N.T.A
+      //setIdCli(2049); //ACONCAGUA
+      //.153
+      //setIdCli(2)
+      setIdCli(Number(idClient));
+      console.log("Cliente ->", idCli);
     }
   }, []);
+
 
   return (
     <ApolloProvider client={apolloClient}>
@@ -91,13 +91,14 @@ const App = () => {
             setQueryPollDealContent,
             filterIniciadas,
             setFilterIniciadas,
-            queryPollTareas, 
+            queryPollTareas,
             setQueryPollTareas,
-            dropdownText, 
-            setDropdownText
+            dropdownText,
+            setDropdownText,
           }}
         >
           <MainLayout />
+          
         </TaskContext.Provider>
       </ConfigProvider>
     </ApolloProvider>
