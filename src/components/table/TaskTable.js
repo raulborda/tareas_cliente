@@ -161,7 +161,7 @@ const TaskTable = ({ tareas, queryPoll }) => {
       dataIndex: "tar_asunto",
       key: "tar_asunto",
       ellipsis: true,
-      width: 250,
+      width: 200,
       ...getColumnSearchProps("tar_asunto"),
     },
     // {
