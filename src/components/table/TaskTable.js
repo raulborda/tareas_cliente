@@ -164,38 +164,38 @@ const TaskTable = ({ tareas, queryPoll }) => {
       width: 250,
       ...getColumnSearchProps("tar_asunto"),
     },
-    {
-      title: "Cliente",
-      dataIndex: "cli_nombre",
-      key: "cli_nombre",
-      width: 150,
-      ...getColumnSearchProps("cli_nombre"),
-      render: (dataIndex, item) => {
-        return (
-          <span>
-            {dataIndex}
-            <span>
-              {" "}
-              {item.con_nombre && (
-                <Popover
-                  title={item.con_nombre}
-                  trigger={"hover"}
-                  placement="top"
-                  content={
-                    <div className="infocontacto-wrapper">
-                      <span>{item.con_telefono1}</span>
-                      <span>{item.con_email1}</span>
-                    </div>
-                  }
-                >
-                  <UserOutlined />
-                </Popover>
-              )}
-            </span>
-          </span>
-        );
-      },
-    },
+    // {
+    //   title: "Cliente",
+    //   dataIndex: "cli_nombre",
+    //   key: "cli_nombre",
+    //   width: 150,
+    //   ...getColumnSearchProps("cli_nombre"),
+    //   render: (dataIndex, item) => {
+    //     return (
+    //       <span>
+    //         {dataIndex}
+    //         <span>
+    //           {" "}
+    //           {item.con_nombre && (
+    //             <Popover
+    //               title={item.con_nombre}
+    //               trigger={"hover"}
+    //               placement="top"
+    //               content={
+    //                 <div className="infocontacto-wrapper">
+    //                   <span>{item.con_telefono1}</span>
+    //                   <span>{item.con_email1}</span>
+    //                 </div>
+    //               }
+    //             >
+    //               <UserOutlined />
+    //             </Popover>
+    //           )}
+    //         </span>
+    //       </span>
+    //     );
+    //   },
+    // },
     {
       title: "Fuente",
       key: "fuente",
