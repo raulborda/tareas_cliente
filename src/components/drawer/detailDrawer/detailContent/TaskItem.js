@@ -21,10 +21,10 @@ const TaskItem = ({ taskData, item }) => {
     setCurrentTask(taskData.filter((x) => x.tar_id === Number(idTarea)));
     const tarea = taskData.filter((x) => x.tar_id === Number(idTarea));
 
-    if (tarea && tarea[0].not_id) {
+    if (tarea && tarea.not_id) {
       setIncludeNote(tarea);
     }
-    if (tarea[0].up_id) {
+    if (tarea.up_id) {
       setIncludeUpload(tarea);
     }
   }, [taskData, item]);

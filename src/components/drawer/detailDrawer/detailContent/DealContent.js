@@ -252,7 +252,7 @@ const DealContent = ({ idNegocio }) => {
         >
           <Button
             type="primary"
-            style={{ backgroundColor: "#00B33C", border: "1px solid #00B33C" }}
+            style={{ backgroundColor: "#00B33C", border: "1px solid #00B33C", marginRight:"5px" }}
             onClick={() => setShowDrawerNewNota(!showDrawerNewNota)}
           >
             <PlusOutlined /> Nota
