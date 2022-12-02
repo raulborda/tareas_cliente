@@ -154,14 +154,14 @@ const TaskTable = ({ tareas, queryPoll }) => {
           </div>
         );
       },
-      width: 70,
+      width: 50,
     },
     {
       title: "Asunto",
       dataIndex: "tar_asunto",
       key: "tar_asunto",
       ellipsis: true,
-      width: 200,
+      width: 100,
       ...getColumnSearchProps("tar_asunto"),
     },
     // {
@@ -199,7 +199,7 @@ const TaskTable = ({ tareas, queryPoll }) => {
     {
       title: "Fuente",
       key: "fuente",
-      width: 80,
+      width: 60,
       dataIndex: "ori_id",
       render: (dataIndex, item) => (
         <Tag color={item.ori_color} key={"key"}>
@@ -241,7 +241,7 @@ const TaskTable = ({ tareas, queryPoll }) => {
       key: "horaVto",
       dataIndex: "tar_horavencimiento",
       showSorterTooltip: false,
-      width: 50,
+      width: 40,
       sorter: (a, b) => {
         a.tar_horavencimiento.localeCompare(b.tar_horavencimiento);
       },
@@ -257,7 +257,7 @@ const TaskTable = ({ tareas, queryPoll }) => {
       title: "Asignado",
       key: "asignado",
       dataIndex: "asignado",
-      width: 80,
+      width: 60,
       render: (dataIndex, item) => {
         return <span>{item.asignado} </span>;
       },
@@ -265,7 +265,7 @@ const TaskTable = ({ tareas, queryPoll }) => {
     {
       title: "Módulo",
       key: "modori",
-      width: 80,
+      width: 60,
       dataIndex: "mod_id",
       render: (dataIndex, item) => {
         return (
@@ -282,7 +282,7 @@ const TaskTable = ({ tareas, queryPoll }) => {
     {
       title: "",
       key: "",
-      width: 80,
+      width: 50,
       render: (dataIndex, item) => (
         <div className="options-wrapper">
           <EyeOutlined

@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable no-unused-vars */
 import { useQuery } from "@apollo/client";
-import { Card, Col, Form, Row, Tag } from "antd";
+import { Card, Col, DatePicker, Form, Input, Row, Tag, TimePicker } from "antd";
 import { TaskContext } from "../../context/TaskContext";
 import { GET_ORIGENES } from "../../graphql/query/origenes";
 import { GET_TIPO_TAREA } from "../../graphql/query/tipoTareas";
@@ -49,8 +49,13 @@ const SeeTaskForm = ({ task }) => {
 
   return (
     <Row>
-      <Col xs={24} style={{ justifyContent: "center", overflowX: "hidden" }}>
+      <Col 
+        xs={24} 
+        style={{ justifyContent: "center", overflowX: "hidden" }}
+        className="form-ver-tarea"
+      >
         <Form
+          disabled={true}
           form={form}
           requiredMark="optional"
           name="seeTaskForm"
@@ -58,7 +63,6 @@ const SeeTaskForm = ({ task }) => {
           autoComplete="off"
         >
           <Form.Item
-            style={{ marginBottom: "0px" }}
             label="Cliente"
             name="cliente"
             initialValue={task.cli_nombre}
@@ -69,21 +73,21 @@ const SeeTaskForm = ({ task }) => {
               },
             ]}
           >
-            <p className="task-client">{task.cli_nombre}</p>
+            <Input value={task.cli_nombre} />
           </Form.Item>
 
-          <Form.Item
-            style={{ marginBottom: "0px" }}
-            label="Contacto"
-            name="contacto"
-            required
-            initialValue={task.con_nombre}
-          >
-            <p className="task-client">{task.con_nombre}</p>
-          </Form.Item>
+          {task.con_nombre && (
+            <Form.Item
+              label="Contacto"
+              name="contacto"
+              required
+              initialValue={task.con_nombre}
+            >
+              <Input value={task.con_nombre} />
+            </Form.Item>
+          )}
 
           <Form.Item
-            style={{ marginBottom: "0px" }}
             label="Asunto"
             name="tar_asunto"
             initialValue={task.tar_asunto}
@@ -94,25 +98,24 @@ const SeeTaskForm = ({ task }) => {
               },
             ]}
           >
-            <p className="task-client">{task.tar_asunto}</p>
+            <Input value={task.tar_asunto} />
           </Form.Item>
 
           <Form.Item
-            style={{ marginBottom: "0px" }}
-            label="Tipo de tarea"
-            name="tip_id"
-            rules={[
-              {
-                required: true,
-                message: "",
-              },
-            ]}
-          >
-            <p className="task-client">{task.tip_desc}</p>
+             label="Tipo de tarea"
+             name="tip_id"
+             initialValue={task.tip_desc}
+             rules={[
+               {
+                 required: true,
+                 message: "",
+               },
+             ]}
+           >
+             <Input value={task.tip_desc} />
           </Form.Item>
 
           <Form.Item
-            style={{ marginBottom: "0px" }}
             label="Fuente"
             name="fuente"
             initialValue={task.ori_id}
@@ -124,9 +127,7 @@ const SeeTaskForm = ({ task }) => {
             ]}
           >
             <span>
-              <Tag color={task.ori_color} style={{ marginBottom: "15px" }}>
-                {task.ori_desc}{" "}
-              </Tag>
+              <Tag color={task.ori_color}>{task.ori_desc} </Tag>
             </span>
           </Form.Item>
 
@@ -135,9 +136,9 @@ const SeeTaskForm = ({ task }) => {
               <div className="date_wrapper">
                 <Col xs={11}>
                   <Form.Item
-                    style={{ marginBottom: "0px" }}
                     label="Vencimiento"
                     name="tar_vencimiento"
+                    initialValue={moment(task.tar_vencimiento, "YYYY-MM-DD")}
                     rules={[
                       {
                         required: true,
@@ -145,43 +146,64 @@ const SeeTaskForm = ({ task }) => {
                       },
                     ]}
                   >
-                    <p className="task-client">{task.tar_vencimiento}</p>
+                    <DatePicker
+                      format="DD/MM/YYYY"
+                      value={moment(task.tar_vencimiento, "YYYY-MM-DD")}
+                      disabled={true}
+                    />
                   </Form.Item>
                 </Col>
-                <Col xs={6}>
-                  <Form.Item
-                    style={{ marginBottom: "0px" }}
-                    label="Hora"
-                    name="tar_horavencimiento"
-                    rules={[
-                      {
-                        required: true,
-                        message: "",
-                      },
-                    ]}
-                  >
-                    <p className="task-client">{task.tar_horavencimiento}</p>
-                  </Form.Item>
-                </Col>
+                {task.tar_horavencimiento && (
+                  <Col xs={6}>
+                    <Form.Item
+                      label="Hora"
+                      name="tar_horavencimiento"
+                      initialValue={moment(
+                        task.tar_horavencimiento,
+                        "HH:mm:ss"
+                      )}
+                      rules={[
+                        {
+                          required: true,
+                          message: "",
+                        },
+                      ]}
+                    >
+                      <TimePicker
+                        style={{ width: 150 }}
+                        format="HH:mm"
+                        use12Hours={false}
+                        disabled={true}
+                      />
+                    </Form.Item>
+                  </Col>
+                )}
                 <Col xs={11} />
               </div>
             </Col>
           </Row>
 
+          {task.not_desc && (
+            <Row gutter={[8, 8]}>
+              <Col xs={24}>
+                <Form.Item required name="asignado" label="Nota">
+                  <div
+                    className="note-wrapper"
+                    dangerouslySetInnerHTML={{
+                      __html: task.not_desc,
+                    }}
+                  ></div>
+                </Form.Item>
+              </Col>
+            </Row>
+          )}
+
           <Row gutter={[8, 8]}>
             <Col xs={24}>
-              <Form.Item
-                required
-                name="asignado"
-                style={{ marginBottom: "0px" }}
-              >
-                <div
-                  className="note-wrapper"
-                  dangerouslySetInnerHTML={{
-                    __html: task.not_desc,
-                  }}
-                  style={{ marginBottom: "20px" }}
-                ></div>
+            <Form.Item required label="Prioridad" name="asignado">
+                <span>
+                  <Tag color={tagColor}>{task.pri_desc}</Tag>
+                </span>
               </Form.Item>
             </Col>
           </Row>
@@ -190,15 +212,11 @@ const SeeTaskForm = ({ task }) => {
             <Col xs={24}>
               <Form.Item
                 required
-                label="Prioridad"
-                name="asignado"
-                style={{ marginBottom: "0px" }}
+                label="Iniciado"
+                name="iniciado"
+                initialValue={task.usu_nombre}
               >
-                <span>
-                  <Tag color={tagColor} style={{ marginBottom: "15px" }}>
-                    {task.pri_desc}
-                  </Tag>
-                </span>
+                <Input value={task.usu_nombre} />
               </Form.Item>
             </Col>
           </Row>
@@ -209,9 +227,9 @@ const SeeTaskForm = ({ task }) => {
                 required
                 label="Asignado"
                 name="asignado"
-                style={{ marginBottom: "0px" }}
+                initialValue={task.asignado}
               >
-                <p className="task-client">{task.usu_nombre}</p>
+                <Input value={task.asignado} />
               </Form.Item>
             </Col>
           </Row>
@@ -219,13 +237,12 @@ const SeeTaskForm = ({ task }) => {
           {task.up_filename && (
             <>
               <Form.Item
-                style={{ marginBottom: "0px" }}
                 label="Detalle del archivo"
                 name="nombreUpload"
                 required
                 initialValue={task.up_detalle}
               >
-                <span>{task.up_detalle}</span>
+                <Input value={task.up_detalle} />
               </Form.Item>
 
               <Card>

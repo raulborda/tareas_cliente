@@ -66,3 +66,18 @@
 .task-client {
   font-weight: bold;
 }
+
+.form-ver-tarea .ant-picker.ant-picker-disabled {
+  background: white !important;
+}
+
+.form-ver-tarea .ant-picker-input > input[disabled] {
+  color: rgba(0,0,0,0.85) !important;
+  cursor: pointer !important; 
+}
+
+.form-ver-tarea .ant-input[disabled]{
+  color: rgba(0,0,0,0.85) !important;
+  background-color: white !important;
+  cursor: pointer !important;
+}
