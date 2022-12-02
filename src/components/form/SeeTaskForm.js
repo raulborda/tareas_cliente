@@ -24,12 +24,16 @@ const SeeTaskForm = ({ task }) => {
   });
   const { data: dataOrigenes } = useQuery(GET_ORIGENES);
 
+  console.log(task)
+
   useEffect(() => {
     if (dataTipoTareas) {
       setTipoTareas(dataTipoTareas.getTiposTareaResolver);
+      console.log(tipoTareas)
     }
     if (dataOrigenes) {
       setOrigenes(dataOrigenes.getOrigenesResolver);
+      console.log(origenes)
     }
 
     switch (true) {
@@ -214,9 +218,9 @@ const SeeTaskForm = ({ task }) => {
                 required
                 label="Iniciado"
                 name="iniciado"
-                initialValue={task.usu_nombre}
+                initialValue={task.iniciado}
               >
-                <Input value={task.usu_nombre} />
+                <Input value={task.iniciado} />
               </Form.Item>
             </Col>
           </Row>

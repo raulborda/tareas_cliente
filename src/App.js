@@ -62,7 +62,6 @@ const App = () => {
       //setIdCli(2)
       //caverzasi
       //setIdCli(727);
-      
       setIdCli(Number(idClient));
       console.log("Cliente ->", idCli);
     }
