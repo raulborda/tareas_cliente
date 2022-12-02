@@ -56,13 +56,14 @@ const App = () => {
       //idCliente por URL
       const idClient = localStorage.cliente;
       //.28
-      setIdCli(6510) //A.P.I.N.T.A
+      //setIdCli(6510) //A.P.I.N.T.A
       //setIdCli(2049); //ACONCAGUA
       //.153
       //setIdCli(2)
       //caverzasi
       //setIdCli(727);
-      //setIdCli(Number(idClient));
+      
+      setIdCli(Number(idClient));
       console.log("Cliente ->", idCli);
     }
   }, []);
