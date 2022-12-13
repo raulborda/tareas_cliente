@@ -175,7 +175,7 @@ const NewTaskForm = ({ queryPoll }) => {
         inputTarea: {
           tar_asunto: v.tar_asunto,
           tar_horavencimiento: moment(v.tar_horavencimiento).format("HH:mm"),
-          // tar_vencimiento: moment(v.tar_vencimiento).format("YYYY-MM-DD"), este es para .153
+          //tar_vencimiento: moment(v.tar_vencimiento).format("YYYY-MM-DD"), //este es para .153
           tar_vencimiento: v.tar_vencimiento,
           usu_id: idUser,
           cli_id: idCli,
