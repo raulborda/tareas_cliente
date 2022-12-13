@@ -17,7 +17,8 @@ const TableView = () => {
     filterEnable,
     idUsuarioFiltro,
     filterIniciadas,
-    setQueryPollTareas
+    setQueryPollTareas,
+    estadoEdit
   } = useContext(TaskContext);
   const [tareas, setTareas] = useState([]);
 
@@ -55,12 +56,6 @@ const TableView = () => {
         setTareas(data.tareasIniciadas);
       }
     }
-
-    // if (dataCliente) {
-    //   const data = JSON.parse(dataCliente.getTareasPorClienteResolver);
-    //   console.log(data);
-    //   setTareas([]);
-    // }
   }, [
     idUser,
     idCli,
@@ -68,6 +63,7 @@ const TableView = () => {
     filterEnable,
     idUsuarioFiltro,
     filterIniciadas,
+    estadoEdit
   ]);
 
   return (

@@ -8,7 +8,7 @@ import {
 } from "@ant-design/icons";
 import { Button, Input, Popconfirm, Popover, Space, Table, Tag } from "antd";
 import { TaskContext } from "../../context/TaskContext";
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import moment from "moment";
 import "./index.css";
 import { useMutation } from "@apollo/client";
@@ -59,6 +59,7 @@ const TaskTable = ({ tareas, queryPoll }) => {
       );
     });
   };
+  
 
   const handleSearch = (selectedKeys, confirm, dataIndex) => {
     confirm();

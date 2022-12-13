@@ -16,7 +16,7 @@ const BodyLayout = ({ queryPoll, children }) => {
       return <NewTaskForm queryPoll={queryPoll} />;
     }
     if (taskDrawerVisible.content === "Editar Tarea") {
-      return <EditTaskForm task={taskDrawerVisible.task} />;
+      return <EditTaskForm task={taskDrawerVisible.task} queryPoll={queryPoll}/>;
     }
     if (taskDrawerVisible.content === "Mis Tareas") {
       return <TaskCalendar queryPoll={queryPoll} />;
