@@ -195,6 +195,7 @@ const NewTaskForm = ({ queryPoll }) => {
 
   useEffect(() => {
     if (dataTipoTareas) {
+      console.log(dataTipoTareas.getTiposTareaResolver)
       setTipoTareas(dataTipoTareas.getTiposTareaResolver);
     }
 

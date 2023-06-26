@@ -54,7 +54,9 @@ const App = () => {
       // console.log("Usuario ->", idUserFromParams);
 
       //idCliente por URL
-      const idClient = localStorage.cliente;
+      //const idClient = localStorage.cliente; // para la version vieja de cliente es esta
+      const idClient = localStorage.cliSelect; // para la version nueva de cliente es esta
+
       //.28
       //setIdCli(6510) //A.P.I.N.T.A
       //setIdCli(2049); //ACONCAGUA
