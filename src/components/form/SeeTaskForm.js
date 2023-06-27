@@ -29,11 +29,11 @@ const SeeTaskForm = ({ task }) => {
   useEffect(() => {
     if (dataTipoTareas) {
       setTipoTareas(dataTipoTareas.getTiposTareaResolver);
-      console.log(tipoTareas)
+      //console.log(tipoTareas)
     }
     if (dataOrigenes) {
       setOrigenes(dataOrigenes.getOrigenesResolver);
-      console.log(origenes)
+      //console.log(origenes)
     }
 
     switch (true) {

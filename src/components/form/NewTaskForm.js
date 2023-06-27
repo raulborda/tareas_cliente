@@ -85,7 +85,7 @@ const NewTaskForm = ({ queryPoll }) => {
     // * Original
     //action: "http://beeapp.binamics.com.ar:4001/files",
     const actions=`${URL}/files`;
-    console.log(actions);
+    //console.log(actions);
   const props = {
     //TODO : URL DINAMICA
     name: "archivo",
@@ -124,7 +124,7 @@ const NewTaskForm = ({ queryPoll }) => {
     },
   };
 
-  console.log("Cliente: ",idCli);
+  //console.log("Cliente: ",idCli);
 
   const onSearchCliente = (val) => {
     if (val.length >= 3) {

@@ -67,7 +67,7 @@ const App = () => {
       //caverzasi
       //setIdCli(727);
       setIdCli(Number(idClient));
-      console.log("Cliente ->", idCli);
+      //console.log("Cliente ->", idCli);
     }
   }, []);
 
