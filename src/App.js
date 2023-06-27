@@ -50,14 +50,14 @@ const App = () => {
       // console.log(url);
       const params = urlSearch.split("=");
       const idUserFromParams = params[1];
-      setIdUser(Number(idUserFromParams));
-      // console.log("Usuario ->", idUserFromParams);
+      //setIdUser(Number(idUserFromParams));// para el viejo
+      //console.log("Usuario ->", idUserFromParams);
+
+      setIdUser(Number(localStorage.getItem("usuario")));
 
       //idCliente por URL
       //const idClient = localStorage.cliente; // para la version vieja de cliente es esta
-      const idClient = localStorage.cliSelect; // para la version nueva de cliente es esta
-      console.log("LOCALSTORAGE: ", localStorage);
-      console.log("LOCALSTORAGE: ", localStorage.cliSelect);
+      const idClient = localStorage.getItem("cliSelect"); // para la version nueva de cliente es esta
 
       //.28
       //setIdCli(6510) //A.P.I.N.T.A
