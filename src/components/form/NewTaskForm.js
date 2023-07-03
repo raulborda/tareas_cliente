@@ -175,8 +175,8 @@ const NewTaskForm = ({ queryPoll }) => {
         inputTarea: {
           tar_asunto: v.tar_asunto,
           tar_horavencimiento: moment(v.tar_horavencimiento).format("HH:mm"), 
-          //tar_vencimiento: moment(v.tar_vencimiento).format("YYYY-MM-DD"), //este es para .153
-          tar_vencimiento: v.tar_vencimiento, // este para el resto de los crm
+          tar_vencimiento: moment(v.tar_vencimiento).format("YYYY-MM-DD"), //este es para .153 y caverzasi
+          //tar_vencimiento: v.tar_vencimiento, // este para el resto de los crm
           usu_id: idUser,
           cli_id: idCli,
           con_id: v.contacto ? Number(v.contacto) : null,
