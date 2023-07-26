@@ -27,7 +27,7 @@ import { useContext, useEffect, useState } from "react";
 import "./index.css";
 
 const NewTaskForm = ({ queryPoll }) => {
-  const { idUser,idCli ,noteContent, setTaskDrawerVisible } = useContext(TaskContext);
+  const { idUser,idCli ,noteContent, setTaskDrawerVisible, idClient } = useContext(TaskContext);
 
   const [tipoTareas, setTipoTareas] = useState([]);
   const [searchCliente, setSearchCliente] = useState("");
@@ -76,7 +76,10 @@ const NewTaskForm = ({ queryPoll }) => {
     variables: { input: searchUsuario },
   });
 
-  const [getContactos] = useLazyQuery(GET_CONTACTOS);
+
+  const { data: dataContactos } = useQuery(GET_CONTACTOS, {
+    variables: { id: idClient },
+  });
 
     const PORT= "4002";
     const PROTOCOL= window.location.protocol;
@@ -138,14 +141,9 @@ const NewTaskForm = ({ queryPoll }) => {
     }
   };
 
-  const handleChangeCliente = (v) => {
-    form.resetFields(["contacto"]);
-    getContactos({ variables: { id: Number(v) } }).then((res) => {
-      if (res) {
-        setContactos(res.data.getContactosResolver);
-      }
-    });
-  };
+
+
+  console.log("contactos: ",contactos);
 
   const onFinish = (v) => {
     const { upload } = v;
@@ -175,8 +173,8 @@ const NewTaskForm = ({ queryPoll }) => {
         inputTarea: {
           tar_asunto: v.tar_asunto,
           tar_horavencimiento: moment(v.tar_horavencimiento).format("HH:mm"), 
-          tar_vencimiento: moment(v.tar_vencimiento).format("YYYY-MM-DD"), //este es para .153 y caverzasi
-          //tar_vencimiento: v.tar_vencimiento, // este para el resto de los crm
+          //tar_vencimiento: moment(v.tar_vencimiento).format("YYYY-MM-DD"), //este es para .153 y caverzasi
+          tar_vencimiento: v.tar_vencimiento, // este para el resto de los crm
           usu_id: idUser,
           cli_id: idCli,
           con_id: v.contacto ? Number(v.contacto) : null,
@@ -210,6 +208,11 @@ const NewTaskForm = ({ queryPoll }) => {
     if (dataUsuarios) {
       setUsuarios(dataUsuarios.getUsuariosResolver);
     }
+
+    if (dataContactos) {
+      setContactos(dataContactos.getContactosResolver);
+    }
+
   }, [dataTipoTareas, dataClientes, dataOrigenes, dataUsuarios]);
 
   return (
