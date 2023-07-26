@@ -27,7 +27,7 @@ import { useContext, useEffect, useState } from "react";
 import "./index.css";
 
 const NewTaskForm = ({ queryPoll }) => {
-  const { idUser,idCli ,noteContent, setTaskDrawerVisible, idClient } = useContext(TaskContext);
+  const { idUser,idCli ,noteContent, setTaskDrawerVisible } = useContext(TaskContext);
 
   const [tipoTareas, setTipoTareas] = useState([]);
   const [searchCliente, setSearchCliente] = useState("");
@@ -76,9 +76,9 @@ const NewTaskForm = ({ queryPoll }) => {
     variables: { input: searchUsuario },
   });
 
-
+  //console.log("idClient: ", idCli)
   const { data: dataContactos } = useQuery(GET_CONTACTOS, {
-    variables: { id: idClient },
+    variables: { id: idCli },
   });
 
     const PORT= "4002";
