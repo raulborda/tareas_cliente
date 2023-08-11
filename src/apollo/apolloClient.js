@@ -15,9 +15,8 @@ const apolloClient = new ApolloClient({
     uri: URL,
     //uri:"http://172.16.150.38:4002", //ganadera
     //uri: "http://10.0.0.28:4002",
-    //uri: "http://10.0.0.153:4002",
+    // uri: "http://10.0.0.153:4002",
     //uri: "http://170.239.49.41:4002",
-
   }),
 });
 

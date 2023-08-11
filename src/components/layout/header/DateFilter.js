@@ -6,68 +6,66 @@ import moment from "moment";
 import "./index.css";
 
 const DateFilter = ({ filterEnable }) => {
-  const { setFilterDate, filterDate, dropdownText, setDropdownText } = useContext(TaskContext);
+  const { setFilterDate, filterDate, dropdownText, setDropdownText } =
+    useContext(TaskContext);
 
   const handleChangeOptions = (v) => {
     //* las fechas tienen este formato para poder operar en la query
-    switch (true) {
-      case v.target.value === "date":
-        const currentDay = moment().format("YYYY-MM-DD");
-        setFilterDate({ mode: "date", date: currentDay });
-        break;
-      case v.target.value === "week":
-        const weeknumber = moment().week();
-        const yearnumber = moment().year();
-        const currentWeek = `${yearnumber}${weeknumber}`;
-        setFilterDate({ mode: "week", date: currentWeek });
-        break;
-      case v.target.value === "nextweek":
-        const nextweeknumber = moment().week() + 1;
-        const nextyearnumber = moment().year();
-        const nextcurrentWeek = `${nextyearnumber}${nextweeknumber}`;
-        setFilterDate({ mode: "nextweek", date: nextcurrentWeek });
-        break;
-      case v.target.value === "all":
-        setFilterDate({ mode: "", date: "" });
-        break;
-      case v.target.value === "expired":
-        const untilToday = moment().format("YYYY-MM-DD");
-        setFilterDate({ mode: "expired", date: untilToday });
-        break;
-
-      default:
-        //TODO evitar este comportamiento cuando se abre el calendario, pisa la fecha actual del filtro
-        // const day = moment().format("YYYY-MM-DD");
-        // setFilterDate({ mode: "date", date: day });
-        break;
-    }
+    // switch (true) {
+    //   case v.target.value === "date":
+    //     const currentDay = moment().format("YYYY-MM-DD");
+    //     setFilterDate({ mode: "date", date: currentDay });
+    //     break;
+    //   case v.target.value === "week":
+    //     const weeknumber = moment().week();
+    //     const yearnumber = moment().year();
+    //     const currentWeek = `${yearnumber}${weeknumber}`;
+    //     setFilterDate({ mode: "week", date: currentWeek });
+    //     break;
+    //   case v.target.value === "nextweek":
+    //     const nextweeknumber = moment().week() + 1;
+    //     const nextyearnumber = moment().year();
+    //     const nextcurrentWeek = `${nextyearnumber}${nextweeknumber}`;
+    //     setFilterDate({ mode: "nextweek", date: nextcurrentWeek });
+    //     break;
+    //   case v.target.value === "all":
+    //     setFilterDate({ mode: "", date: "" });
+    //     break;
+    //   case v.target.value === "expired":
+    //     const untilToday = moment().format("YYYY-MM-DD");
+    //     setFilterDate({ mode: "expired", date: untilToday });
+    //     break;
+    //   default:
+    //     //TODO evitar este comportamiento cuando se abre el calendario, pisa la fecha actual del filtro
+    //     // const day = moment().format("YYYY-MM-DD");
+    //     // setFilterDate({ mode: "date", date: day });
+    //     break;
+    // }
   };
 
   const returnCustomFormat = () => {
     //* formato visible del picker
-    switch (true) {
-      case filterDate.mode === "date" || filterDate.mode === "month":
-        const dateFormat = moment(filterDate.date).format("DD/MM/YYYY");
-        return dateFormat;
-      case filterDate.mode === "week":
-        let currentDate = moment();
-        let weekStart = currentDate.clone().startOf("week");
-        let weekEnd = currentDate.clone().endOf("week");
-        return `${moment(weekStart).format("DD/MM")} - ${moment(weekEnd).format(
-          "DD/MM"
-        )}`;
-
-      case filterDate.mode === "nextweek":
-        let currentDay = moment();
-        let nextWeekStart = currentDay.clone().startOf("week").add(7, "days");
-        let nextWeekEnd = currentDay.clone().endOf("week").add(7, "days");
-        return `${moment(nextWeekStart).format("DD/MM")} - ${moment(
-          nextWeekEnd
-        ).format("DD/MM")}`;
-
-      default:
-        break;
-    }
+    // switch (true) {
+    //   case filterDate.mode === "date" || filterDate.mode === "month":
+    //     const dateFormat = moment(filterDate.date).format("DD/MM/YYYY");
+    //     return dateFormat;
+    //   case filterDate.mode === "week":
+    //     let currentDate = moment();
+    //     let weekStart = currentDate.clone().startOf("week");
+    //     let weekEnd = currentDate.clone().endOf("week");
+    //     return `${moment(weekStart).format("DD/MM")} - ${moment(weekEnd).format(
+    //       "DD/MM"
+    //     )}`;
+    //   case filterDate.mode === "nextweek":
+    //     let currentDay = moment();
+    //     let nextWeekStart = currentDay.clone().startOf("week").add(7, "days");
+    //     let nextWeekEnd = currentDay.clone().endOf("week").add(7, "days");
+    //     return `${moment(nextWeekStart).format("DD/MM")} - ${moment(
+    //       nextWeekEnd
+    //     ).format("DD/MM")}`;
+    //   default:
+    //     break;
+    // }
   };
 
   return (
@@ -82,7 +80,11 @@ const DateFilter = ({ filterEnable }) => {
           handleChangeOptions(v);
         }}
       >
-        <Radio.Button value={"date"} onClick={() => setDropdownText("Semana")} style={{ marginLeft: "10px" }}>
+        <Radio.Button
+          value={"date"}
+          onClick={() => setDropdownText("Semana")}
+          style={{ marginLeft: "10px" }}
+        >
           Hoy
         </Radio.Button>
 
@@ -118,11 +120,12 @@ const DateFilter = ({ filterEnable }) => {
           }
         >
           <Button
-           className={
-            filterDate.mode !== "date" &&
-            filterDate.mode !== "month" &&
-            "selected-button"
-          }>
+            className={
+              filterDate.mode !== "date" &&
+              filterDate.mode !== "month" &&
+              "selected-button"
+            }
+          >
             {dropdownText}
           </Button>
         </Dropdown>
@@ -132,12 +135,12 @@ const DateFilter = ({ filterEnable }) => {
           content={
             <div className="site-calendar-demo-card">
               <Calendar
-                value={""}
+                // value={null}
                 fullscreen={false}
-                onChange={(v) => {
+                onChange={(selectedDate) => {
                   setFilterDate({
                     mode: "month",
-                    date: v.format("YYYY-MM-DD"),
+                    date: selectedDate.toISOString(), // Convert date to ISO string format
                   });
                 }}
               />

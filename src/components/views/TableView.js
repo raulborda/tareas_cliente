@@ -18,7 +18,7 @@ const TableView = () => {
     idUsuarioFiltro,
     filterIniciadas,
     setQueryPollTareas,
-    estadoEdit
+    estadoEdit,
   } = useContext(TaskContext);
   const [tareas, setTareas] = useState([]);
 
@@ -37,22 +37,17 @@ const TableView = () => {
       filtroFecha: filterEnable ? "" : filterDate.mode,
       fecha: filterEnable ? "" : filterDate.date,
       idEstado: filterEnable ? 0 : filterState,
-      idUsuario: idUser
+      idUsuario: idUser,
     },
   });
-
-
 
   useEffect(() => {
     setQueryPollTareas({ initial: startPolling, close: stopPolling });
     if (dataCliente) {
       const data = JSON.parse(dataCliente.getTareasPorClienteResolver);
-      console.log(data)
       if (!filterIniciadas) {
         setTareas(data.tareas);
-        console.log(data.tareas);
       } else {
-        console.log(data.tareasIniciadas)
         setTareas(data.tareasIniciadas);
       }
     }
@@ -63,7 +58,7 @@ const TableView = () => {
     filterEnable,
     idUsuarioFiltro,
     filterIniciadas,
-    estadoEdit
+    estadoEdit,
   ]);
 
   return (
