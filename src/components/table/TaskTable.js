@@ -17,6 +17,7 @@ import OpenNotification from "../notification/OpenNotification";
 import DetailDrawer from "../drawer/detailDrawer/DetailDrawer";
 
 const TaskTable = ({ tareas, queryPoll }) => {
+
   const [updateEstadoTareaIframeResolver] = useMutation(UPDATE_ESTADO_TAREA);
   const { setTaskDrawerVisible, filterIniciadas } = useContext(TaskContext);
   const [showDetailDrawer, setShowDetailDrawer] = useState({
@@ -59,7 +60,6 @@ const TaskTable = ({ tareas, queryPoll }) => {
       );
     });
   };
-  
 
   const handleSearch = (selectedKeys, confirm, dataIndex) => {
     confirm();

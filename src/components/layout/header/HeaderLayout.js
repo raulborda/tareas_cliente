@@ -22,7 +22,6 @@ import "./index.css";
 import StateFilter from "./StateFilter";
 import UserGroupFilter from "./UserGroupFilter";
 
-
 const HeaderLayout = () => {
   const {
     setTaskDrawerVisible,
@@ -32,13 +31,12 @@ const HeaderLayout = () => {
     filterEnable,
     setFilterEnable,
     setFilterIniciadas,
-    filterIniciadas
+    filterIniciadas,
   } = useContext(TaskContext);
 
   const [listadoUsuarios, setListadoUsuarios] = useState([]);
   const [listadoGrupos, setListadoGrupos] = useState([]);
   const [usuarioNormal, setUsuarioNormal] = useState(false);
-
 
   const { data } = useQuery(GET_USUARIOS_Y_GRUPOS, {
     variables: { idUsuario: idUser },
@@ -72,7 +70,7 @@ const HeaderLayout = () => {
           unCheckedChildren={<UsergroupAddOutlined />}
           defaultChecked
         /> */}
-         <Switch
+        <Switch
           onChange={() => setFilterIniciadas(!filterIniciadas)}
           checkedChildren={<UserAddOutlined />}
           unCheckedChildren={<UsergroupAddOutlined />}
@@ -87,8 +85,8 @@ const HeaderLayout = () => {
           onClick={() =>
             setTaskDrawerVisible({ visible: true, content: "Nueva Tarea" })
           }
-        > 
-          <PlusOutlined style={{color:"white"}}/> Tarea
+        >
+          <PlusOutlined style={{ color: "white" }} /> Tarea
         </Button>
       </div>
     </div>

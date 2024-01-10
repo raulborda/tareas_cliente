@@ -24,8 +24,6 @@ const SeeTaskForm = ({ task }) => {
   });
   const { data: dataOrigenes } = useQuery(GET_ORIGENES);
 
-  console.log(task)
-
   useEffect(() => {
     if (dataTipoTareas) {
       setTipoTareas(dataTipoTareas.getTiposTareaResolver);
@@ -53,8 +51,8 @@ const SeeTaskForm = ({ task }) => {
 
   return (
     <Row>
-      <Col 
-        xs={24} 
+      <Col
+        xs={24}
         style={{ justifyContent: "center", overflowX: "hidden" }}
         className="form-ver-tarea"
       >
@@ -106,17 +104,17 @@ const SeeTaskForm = ({ task }) => {
           </Form.Item>
 
           <Form.Item
-             label="Tipo de tarea"
-             name="tip_id"
-             initialValue={task.tip_desc}
-             rules={[
-               {
-                 required: true,
-                 message: "",
-               },
-             ]}
-           >
-             <Input value={task.tip_desc} />
+            label="Tipo de tarea"
+            name="tip_id"
+            initialValue={task.tip_desc}
+            rules={[
+              {
+                required: true,
+                message: "",
+              },
+            ]}
+          >
+            <Input value={task.tip_desc} />
           </Form.Item>
 
           <Form.Item
@@ -204,7 +202,7 @@ const SeeTaskForm = ({ task }) => {
 
           <Row gutter={[8, 8]}>
             <Col xs={24}>
-            <Form.Item required label="Prioridad" name="asignado">
+              <Form.Item required label="Prioridad" name="asignado">
                 <span>
                   <Tag color={tagColor}>{task.pri_desc}</Tag>
                 </span>

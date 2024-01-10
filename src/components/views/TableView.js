@@ -32,6 +32,7 @@ const TableView = () => {
     startPolling,
     stopPolling,
   } = useQuery(GET_CLIENTE_FILTRO, {
+    fetchPolicy: "network-only",
     variables: {
       idCliente: idCli,
       filtroFecha: filterEnable ? "" : filterDate.mode,

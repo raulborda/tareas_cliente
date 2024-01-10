@@ -13,7 +13,8 @@ const App = () => {
   //* Para inicializar el state calculo la semana actual
   const weeknumber = moment().week();
   const yearnumber = moment().year();
-  const currentWeek = `${yearnumber}${weeknumber}`;
+  const formattedWeek = weeknumber.toString().padStart(2, "0"); // Agrega un 0 si el número es menor a 10
+  const currentWeek = `${yearnumber}${formattedWeek}`;
 
   const [idUser, setIdUser] = useState();
   const [idCli, setIdCli] = useState();
@@ -71,7 +72,6 @@ const App = () => {
     }
   }, []);
 
-
   return (
     <ApolloProvider client={apolloClient}>
       <ConfigProvider locale={esES}>
@@ -104,7 +104,6 @@ const App = () => {
           }}
         >
           <MainLayout />
-          
         </TaskContext.Provider>
       </ConfigProvider>
     </ApolloProvider>

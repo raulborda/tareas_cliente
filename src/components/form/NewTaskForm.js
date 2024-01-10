@@ -18,7 +18,10 @@ import Note from "../note/Note";
 import OpenNotification from "../notification/OpenNotification";
 import { TaskContext } from "../../context/TaskContext";
 import { NEW_TAREA } from "../../graphql/mutation/tareas";
-import { GET_CLIENTES_LIMIT, GET_CONTACTOS } from "../../graphql/query/clientes";
+import {
+  GET_CLIENTES_LIMIT,
+  GET_CONTACTOS,
+} from "../../graphql/query/clientes";
 import { GET_ORIGENES } from "../../graphql/query/origenes";
 import { GET_TIPO_TAREA } from "../../graphql/query/tipoTareas";
 import { GET_USUARIOS } from "../../graphql/query/usuarios";
@@ -27,7 +30,8 @@ import { useContext, useEffect, useState } from "react";
 import "./index.css";
 
 const NewTaskForm = ({ queryPoll }) => {
-  const { idUser,idCli ,noteContent, setTaskDrawerVisible } = useContext(TaskContext);
+  const { idUser, idCli, noteContent, setTaskDrawerVisible } =
+    useContext(TaskContext);
 
   const [tipoTareas, setTipoTareas] = useState([]);
   const [searchCliente, setSearchCliente] = useState("");
@@ -81,20 +85,20 @@ const NewTaskForm = ({ queryPoll }) => {
     variables: { id: idCli },
   });
 
-    const PORT= "4002";
-    const PROTOCOL= window.location.protocol;
-    const HOSTNAME= window.location.hostname;
-    const URL= `${PROTOCOL}//${HOSTNAME}:${PORT}`;
-    // * Original
-    //action: "http://beeapp.binamics.com.ar:4001/files",
-    const actions=`${URL}/files`;
-    //console.log(actions);
+  const PORT = "4002";
+  const PROTOCOL = window.location.protocol;
+  const HOSTNAME = window.location.hostname;
+  const URL = `${PROTOCOL}//${HOSTNAME}:${PORT}`;
+  // * Original
+  //action: "http://beeapp.binamics.com.ar:4001/files",
+  const actions = `${URL}/files`;
+  //console.log(actions);
   const props = {
     //TODO : URL DINAMICA
     name: "archivo",
     multiple: false,
     uploaded: false,
-    action:`${URL}/files`,
+    action: `${URL}/files`,
     fileList: fList,
     onChange(info) {
       setFlist(info.fileList.slice(-1));
@@ -141,10 +145,6 @@ const NewTaskForm = ({ queryPoll }) => {
     }
   };
 
-
-
-  console.log("contactos: ",contactos);
-
   const onFinish = (v) => {
     const { upload } = v;
 
@@ -172,7 +172,7 @@ const NewTaskForm = ({ queryPoll }) => {
       variables: {
         inputTarea: {
           tar_asunto: v.tar_asunto,
-          tar_horavencimiento: moment(v.tar_horavencimiento).format("HH:mm"), 
+          tar_horavencimiento: moment(v.tar_horavencimiento).format("HH:mm"),
           //tar_vencimiento: moment(v.tar_vencimiento).format("YYYY-MM-DD"), //este es para .153 y caverzasi
           tar_vencimiento: v.tar_vencimiento, // este para el resto de los crm
           usu_id: idUser,
@@ -193,7 +193,6 @@ const NewTaskForm = ({ queryPoll }) => {
 
   useEffect(() => {
     if (dataTipoTareas) {
-      console.log(dataTipoTareas.getTiposTareaResolver)
       setTipoTareas(dataTipoTareas.getTiposTareaResolver);
     }
 
@@ -212,7 +211,6 @@ const NewTaskForm = ({ queryPoll }) => {
     if (dataContactos) {
       setContactos(dataContactos.getContactosResolver);
     }
-
   }, [dataTipoTareas, dataClientes, dataOrigenes, dataUsuarios]);
 
   return (
