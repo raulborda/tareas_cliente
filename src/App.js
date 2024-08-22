@@ -72,6 +72,8 @@ const App = () => {
     }
   }, []);
 
+  console.log('version modulo-tareas_cliente: 22.08.24');
+
   return (
     <ApolloProvider client={apolloClient}>
       <ConfigProvider locale={esES}>

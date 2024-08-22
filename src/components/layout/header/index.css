@@ -137,3 +137,95 @@ a:hover {
   background-color: white !important;
   color: #00b33c !important;
 }
+
+/* Cambiar el color del borde punteado al hacer hover sobre el área de arrastre */
+.ant-upload-drag:hover {
+  border-color: #00b33c !important;
+}
+
+.ant-btn:hover {
+  color: #00b33c !important;
+  border-color: #00b33c !important;
+}
+
+.ant-btn:focus {
+  color: #00b33c !important;
+  border-color: #00b33c !important;
+}
+
+.ant-btn-link {
+  color: #00b33c !important;
+}
+
+.ant-table-filter-trigger.active {
+  color: #00b33c !important;
+}
+
+.ant-dropdown-menu-item-selected {
+  color: #00b33c !important;
+}
+
+.ant-checkbox-input.active {
+  color: #00b33c !important;
+}
+
+.ant-picker:hover {
+  border-color: #00b33c !important;
+}
+
+.ant-picker:focus {
+  border-color: #00b33c !important;
+}
+
+.ant-picker-focused {
+  border-color: #00b33c !important;
+}
+
+.ant-picker-dropdown {
+  box-shadow: none !important;
+}
+
+.ant-picker {
+  box-shadow: none !important;
+}
+
+.ant-picker-today-btn {
+  color: #00b33c !important;
+}
+
+/* Cambiar el color del checkbox seleccionado en el filtro de columna */
+.ant-table-filter-dropdown .ant-checkbox-wrapper .ant-checkbox-checked .ant-checkbox-inner {
+  background-color: #00b33c !important;
+  border-color: #00b33c !important;
+}
+
+/* Cambiar el color de los botones de orden cuando están activos */
+.ant-table-column-sorter-up.active,
+.ant-table-column-sorter-down.active {
+  color: #00b33c !important;
+}
+
+.btn-agregar-tarea:hover {
+  background-color: white !important;
+}
+
+.ant-input:hover {
+  border-color: #00b33c !important;
+}
+
+.ant-input:focus {
+  border-color: #00b33c !important;
+  box-shadow: none !important;
+}
+
+.anticon-inbox {
+  color: #00b33c !important;
+}
+
+.btn-cancelar-tarea:hover,
+.btn-cancelar-tarea:focus,
+.btn-cancelar-tarea:active {
+  color: #ff4d4f !important;
+  background-color: #FFFFFF !important;
+  border-color: #ff4d4f !important;
+}

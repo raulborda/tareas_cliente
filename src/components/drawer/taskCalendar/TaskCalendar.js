@@ -33,7 +33,7 @@ const TaskCalendar = ({ queryPoll }) => {
 
   useEffect(() => {
     if (data) {
-      console.log(data);
+      // console.log(data);
       const tareas = JSON.parse(data.getTareasParaCalendarioIframeResolver);
 
       setTasksDates(tareas.fechasVenc);

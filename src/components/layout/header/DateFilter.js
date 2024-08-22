@@ -25,7 +25,7 @@ const DateFilter = ({ filterEnable }) => {
         const formattedWeek = weeknumber.toString().padStart(2, "0"); // Agrega un 0 si el número es menor a 10
         const currentWeek = `${yearnumber}${formattedWeek}`;
 
-        console.log(formattedWeek);
+        // console.log(formattedWeek);
         setFilterDate({ mode: "week", date: currentWeek });
         break;
 

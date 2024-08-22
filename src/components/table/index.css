@@ -13,10 +13,6 @@
     color: #00b33c !important;
     border-color: #00b33c !important;
 }
-.ant-btn:hover{
-    color: #00b33c !important;
-    border-color: #00b33c !important;
-}
 
 .ant-btn::selection{
     color: #00b33c;

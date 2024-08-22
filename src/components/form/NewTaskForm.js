@@ -98,7 +98,8 @@ const NewTaskForm = ({ queryPoll }) => {
     name: "archivo",
     multiple: false,
     uploaded: false,
-    action: `${URL}/files`,
+    // action: `${URL}/files`,
+    action: "http://beeapp.binamics.com.ar:4001/files",
     fileList: fList,
     onChange(info) {
       setFlist(info.fileList.slice(-1));
@@ -395,6 +396,7 @@ const NewTaskForm = ({ queryPoll }) => {
             </Row>
             <div className="buttons-wrapper">
               <Button
+                className="btn-agregar-tarea"
                 type="primary"
                 block
                 htmlType="submit"
@@ -403,6 +405,7 @@ const NewTaskForm = ({ queryPoll }) => {
                 Guardar
               </Button>
               <Button
+                className="btn-cancelar-tarea"
                 type="danger"
                 block
                 onClick={() => {

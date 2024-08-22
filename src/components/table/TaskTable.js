@@ -89,6 +89,7 @@ const TaskTable = ({ tareas, queryPoll }) => {
         <Space>
           <Button
             type="primary"
+            className="btn-agregar-tarea"
             onClick={() => handleSearch(selectedKeys, confirm, dataIndex)}
             icon={<SearchOutlined />}
             size="small"

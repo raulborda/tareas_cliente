@@ -429,6 +429,7 @@ const EditTaskForm = ({ task, queryPoll }) => {
           </Row>
           <div className="buttons-wrapper">
             <Button
+              className="btn-agregar-tarea"
               type="primary"
               block
               htmlType="submit"
@@ -437,6 +438,7 @@ const EditTaskForm = ({ task, queryPoll }) => {
               Guardar
             </Button>
             <Button
+              className="btn-cancelar-tarea"
               type="danger"
               block
               onClick={() => {

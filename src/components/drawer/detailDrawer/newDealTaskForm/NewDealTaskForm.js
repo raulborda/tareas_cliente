@@ -415,6 +415,7 @@ const NewDealTaskForm = ({ idNegocio, dataNegocio, closeDrawer }) => {
             </Row>
             <div className="buttons-wrapper">
               <Button
+                className="btn-agregar-tarea"
                 type="primary"
                 block
                 htmlType="submit"
@@ -423,6 +424,7 @@ const NewDealTaskForm = ({ idNegocio, dataNegocio, closeDrawer }) => {
                 Guardar
               </Button>
               <Button
+                className="btn-cancelar-tarea"
                 type="danger"
                 block
                 onClick={() => {

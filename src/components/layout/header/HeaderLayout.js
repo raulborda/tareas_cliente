@@ -82,11 +82,12 @@ const HeaderLayout = () => {
         <Button
           type="primary"
           style={{ marginLeft: 5 }}
+          className="btn-agregar-tarea"
           onClick={() =>
             setTaskDrawerVisible({ visible: true, content: "Nueva Tarea" })
           }
         >
-          <PlusOutlined style={{ color: "white" }} /> Tarea
+          <PlusOutlined /> Tarea
         </Button>
       </div>
     </div>
