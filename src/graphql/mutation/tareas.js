@@ -29,6 +29,7 @@ export const UPDATE_TAREA = gql`
     $inputAdjunto: uploadInput
     $inputNota: notaInput
     $idUsuario: Int
+    $idUsuarioAsignado: Int
   ) {
     updateTareaResolver(
       idTarea: $idTarea
@@ -36,6 +37,7 @@ export const UPDATE_TAREA = gql`
       inputAdjunto: $inputAdjunto
       inputNota: $inputNota
       idUsuario: $idUsuario
+      idUsuarioAsignado: $idUsuarioAsignado
     )
   }
 `;

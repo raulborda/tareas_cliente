@@ -1,23 +1,35 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable no-unused-vars */
-import { useQuery } from "@apollo/client";
-import { Card, Col, DatePicker, Form, Input, Row, Tag, TimePicker } from "antd";
+import { useQuery, useMutation } from "@apollo/client";
+import { Card, Col, DatePicker, Form, Input, Row, Tag, TimePicker, List, Skeleton, Popconfirm, Button } from "antd";
 import { TaskContext } from "../../context/TaskContext";
 import { GET_ORIGENES } from "../../graphql/query/origenes";
 import { GET_TIPO_TAREA } from "../../graphql/query/tipoTareas";
 import { GET_USUARIOS } from "../../graphql/query/usuarios";
+import {
+  DeleteOutlined,
+  DownloadOutlined,
+  CheckOutlined
+} from "@ant-design/icons";
 import moment from "moment";
 import { useContext, useEffect, useState } from "react";
 import returnExtIcon from "../../utils/returnExtIcon";
 import "./index.css";
+import { ELIMINAR_ARCHIVO } from "../../graphql/mutation/deleteFile";
+import Metadata from "../layout/Metadata";
+import '../layout/metadata.css';
+import OpenNotification from "../notification/OpenNotification";
 
-const SeeTaskForm = ({ task }) => {
+const SeeTaskForm = ({ task, queryPoll }) => {
   const [form] = Form.useForm();
 
   const { setTaskDrawerVisible } = useContext(TaskContext);
   const [origenes, setOrigenes] = useState([]);
   const [tipoTareas, setTipoTareas] = useState([]);
   const [tagColor, setTagColor] = useState("green");
+
+  const [loadingFile, setLoadingFile] = useState(false);
+  const [deleteArchivo, setDeleteArchivo] = useState(false); 
 
   const { data: dataTipoTareas } = useQuery(GET_TIPO_TAREA, {
     variables: { idCategoria: 1 },
@@ -49,6 +61,63 @@ const SeeTaskForm = ({ task }) => {
     }
   }, [dataOrigenes, dataTipoTareas]);
 
+
+  const [deleteUploadFileResolver] = useMutation(ELIMINAR_ARCHIVO, {
+    onCompleted: () => {
+      if (queryPoll) {
+        const { startPolling, stopPolling } = queryPoll;
+
+        startPolling(1000);
+
+        setTimeout(() => {
+          stopPolling();
+        }, 1000);
+      }
+      OpenNotification(
+        <h4>Archivo eliminado exitosamente</h4>,
+        null,
+        "topleft",
+        <CheckOutlined style={{ color: "green" }} />,
+        null
+      );
+      //setTaskDrawerVisible({ visible: false, content: "" });
+      setDeleteArchivo(true);
+    },
+  });
+
+
+  const PORT = 4001; // siempre corre en este puerto
+  const PROTOCOL = window.location.protocol;
+  const HOSTNAME = window.location.hostname;
+  const FOLDER = "static";
+
+  const handleClick = (item) => {
+    //Servidor local: para hacer pruebas en local
+    //window.open(`http://beeapp.binamics.com.ar:4001/static?file=${item.up_hashname}`, '_blank');
+
+    // Producción: para producción.
+    window.open(
+      `${PROTOCOL}//${HOSTNAME}:${PORT}/${FOLDER}?file=${item.up_hashname}`,
+      "_blank"
+    );
+  };
+
+
+
+  const eliminarArchivo = async (idAchivo) => {
+    //console.log('archivo a eliminar', idAchivo)
+    // Apollo
+    deleteUploadFileResolver({
+      variables: {
+        idFile: idAchivo,
+      },
+    }).then(() => {
+    });
+
+  };
+
+  console.log('task', task)
+
   return (
     <Row>
       <Col
@@ -57,9 +126,9 @@ const SeeTaskForm = ({ task }) => {
         className="form-ver-tarea"
       >
         <Form
-          disabled={true}
+          //disabled={true}
           form={form}
-          requiredMark="optional"
+          //requiredMark="optional"
           name="seeTaskForm"
           layout="vertical"
           autoComplete="off"
@@ -223,7 +292,7 @@ const SeeTaskForm = ({ task }) => {
             </Col>
           </Row>
 
-          <Row gutter={[8, 8]}>
+          <Row style={{marginBottom: "16px"}} gutter={[8, 8]}>
             <Col xs={24}>
               <Form.Item
                 required
@@ -236,9 +305,9 @@ const SeeTaskForm = ({ task }) => {
             </Col>
           </Row>
 
-          {task.up_filename && (
+          {task.up_filename && deleteArchivo === false && (
             <>
-              <Form.Item
+              {/* <Form.Item
                 label="Detalle del archivo"
                 name="nombreUpload"
                 required
@@ -256,7 +325,53 @@ const SeeTaskForm = ({ task }) => {
                     </span>
                   </div>
                 </div>
-              </Card>
+              </Card> */}
+              <List
+                key="list"
+                loading={loadingFile}
+                itemLayout="horizontal"
+                dataSource={[task]}
+                renderItem={(item, idx) => {
+                  return (
+                    <div>
+                      <List.Item key={idx}
+                        actions={[
+                          <DownloadOutlined onClick={() => handleClick(item)} style={{ color: "#56b43c" }} />, <Popconfirm
+                            title={
+                              <div
+                                style={{
+                                  display: "flex",
+                                  flexDirection: "column",
+                                  width: 250,
+                                  gap: 4,
+                                }}
+                              >
+                                <label>¿Deseas eliminar el archivo <b>{item?.up_filename}</b>?</label>
+                              </div>
+                            }
+                            okText="Borrar"
+                            cancelText="Cerrar"
+                            onConfirm={() => eliminarArchivo(item?.up_id)}
+                            placement="left"
+                          >
+                            <Button type="link" style={{ padding: "0px", margin: "0px" }}>
+                              <DeleteOutlined style={{ color: "red" }} />
+                            </Button>
+                          </Popconfirm>
+                        ]}
+                      >
+                        <Skeleton avatar title loading={loadingFile} active>
+                          <List.Item.Meta
+                            className="item_meta"
+                            avatar={returnExtIcon(item.up_mimetype)} 
+                            description={<Metadata metadata={item} />}
+                          />
+                        </Skeleton>
+                      </List.Item>
+                    </div>
+                  );
+                }}
+              />
             </>
           )}
         </Form>

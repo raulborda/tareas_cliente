@@ -123,6 +123,7 @@ const TaskTable = ({ tareas, queryPoll }) => {
     {
       title: "...",
       dataIndex: "",
+      align: 'center',
       key: "prioridad",
       render: (dataIndex, item) => {
         let tagColor = "";
@@ -156,7 +157,7 @@ const TaskTable = ({ tareas, queryPoll }) => {
           </div>
         );
       },
-      width: 50,
+      width: 35,
     },
     {
       title: "Asunto",

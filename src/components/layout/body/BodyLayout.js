@@ -22,7 +22,7 @@ const BodyLayout = ({ queryPoll, children }) => {
       return <TaskCalendar queryPoll={queryPoll} />;
     }
     if (taskDrawerVisible.content === "Ver Tarea") {
-      return <SeeTaskForm task={taskDrawerVisible.task} />;
+      return <SeeTaskForm task={taskDrawerVisible.task} queryPoll={queryPoll} />;
     }
   };
 

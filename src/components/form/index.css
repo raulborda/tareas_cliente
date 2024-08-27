@@ -81,3 +81,11 @@
   background-color: white !important;
   cursor: pointer !important;
 }
+
+.ant-picker-ranges {
+  display: flex;
+}
+
+.ant-picker-now-btn {
+  color: #00b33c;
+}

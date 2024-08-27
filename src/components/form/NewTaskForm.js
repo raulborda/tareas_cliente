@@ -293,8 +293,8 @@ const NewTaskForm = ({ queryPoll }) => {
                   })}
               </Select>
             </Form.Item>
-
-            <Col xs={11}>
+            <Row>
+<Col xs={11}>
               <Form.Item
                 label="Vencimiento"
                 name="tar_vencimiento"
@@ -332,6 +332,8 @@ const NewTaskForm = ({ queryPoll }) => {
                 />
               </Form.Item>
             </Col>
+            </Row>
+            
             <Col xs={11} />
             <Note />
 

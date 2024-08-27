@@ -157,6 +157,15 @@ a:hover {
   color: #00b33c !important;
 }
 
+.ant-btn-link:hover  {
+  color: #00b33c !important;
+  border-color: transparent !important;
+}
+
+.ant-btn-link:focus {
+  border-color: transparent !important;
+}
+
 .ant-table-filter-trigger.active {
   color: #00b33c !important;
 }

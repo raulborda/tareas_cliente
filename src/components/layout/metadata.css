@@ -1,0 +1,60 @@
+.metadata_wrapper {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    /* padding-right: 8px; */
+}
+
+.info {
+    display: flex;
+    flex-direction: column;
+}
+
+.title {
+    font-style: normal;
+    font-size: 14px;
+    font-weight: 700;
+    margin-bottom: 2px;
+}
+
+.details {
+    margin: 0;
+    font-style: italic;
+    line-height: 12px;
+    font-size: 13px;
+}
+
+.user_info {
+    display: flex;
+}
+
+.tags {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-end;
+}
+
+.tag_alert {
+    display: flex;
+    align-items: center;
+    font-size: 12px;
+    padding: 0 7px;
+    /* border: 1px dashed $light-gray; */
+    margin-top: 4px;
+}
+
+.item_meta {
+	display: flex;
+	align-items: center;
+}
+
+
+.item_list_wrapper:hover {
+	cursor: pointer;
+    border-color: transparent !important;
+}
+
+.ant-list-item-action {
+	margin-left: 15px !important;
+}

@@ -7,7 +7,8 @@ const TaskDrawer = ({ children }) => {
 
   return (
     <Drawer
-      width={taskDrawerVisible.content === "Mis Tareas" ? 600 : 500}
+      //width={taskDrawerVisible.content === "Mis Tareas" ? 600 : 500}
+      width={600}
       destroyOnClose
       maskClosable={false}
       title={taskDrawerVisible.content}

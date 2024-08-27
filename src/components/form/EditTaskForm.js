@@ -127,6 +127,7 @@ const EditTaskForm = ({ task, queryPoll }) => {
         inputAdjunto,
         inputNota,
         idUsuario: idUser,
+        idUsuarioAsignado: v.usuarioAsignado
       },
     });
   };
@@ -399,9 +400,9 @@ const EditTaskForm = ({ task, queryPoll }) => {
             </Card>
           )}
 
-          <Row gutter={[8, 8]}>
+<Row gutter={[8, 8]}>
             <Col xs={24}>
-              <Form.Item name="usuarioAsignado" label="Asignar a usuario">
+              <Form.Item name="usuarioAsignado" label="Asignar a usuario" initialValue={task?.idAsignado}>
                 <Select
                   showSearch
                   allowClear
