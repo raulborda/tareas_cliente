@@ -19,6 +19,7 @@ import { ELIMINAR_ARCHIVO } from "../../graphql/mutation/deleteFile";
 import Metadata from "../layout/Metadata";
 import '../layout/metadata.css';
 import OpenNotification from "../notification/OpenNotification";
+import { DELETE_UPLOAD_TAREA } from "../../graphql/mutation/upload";
 
 const SeeTaskForm = ({ task, queryPoll }) => {
   const [form] = Form.useForm();
@@ -62,7 +63,7 @@ const SeeTaskForm = ({ task, queryPoll }) => {
   }, [dataOrigenes, dataTipoTareas]);
 
 
-  const [deleteUploadFileResolver] = useMutation(ELIMINAR_ARCHIVO, {
+  const [deleteUploadDeTareaIframeResolver] = useMutation(DELETE_UPLOAD_TAREA, {
     onCompleted: () => {
       if (queryPoll) {
         const { startPolling, stopPolling } = queryPoll;
@@ -80,10 +81,32 @@ const SeeTaskForm = ({ task, queryPoll }) => {
         <CheckOutlined style={{ color: "green" }} />,
         null
       );
-      //setTaskDrawerVisible({ visible: false, content: "" });
       setDeleteArchivo(true);
     },
   });
+
+  // const [deleteUploadFileResolver] = useMutation(ELIMINAR_ARCHIVO, {
+  //   onCompleted: () => {
+  //     if (queryPoll) {
+  //       const { startPolling, stopPolling } = queryPoll;
+
+  //       startPolling(1000);
+
+  //       setTimeout(() => {
+  //         stopPolling();
+  //       }, 1000);
+  //     }
+  //     OpenNotification(
+  //       <h4>Archivo eliminado exitosamente</h4>,
+  //       null,
+  //       "topleft",
+  //       <CheckOutlined style={{ color: "green" }} />,
+  //       null
+  //     );
+  //     //setTaskDrawerVisible({ visible: false, content: "" });
+  //     setDeleteArchivo(true);
+  //   },
+  // });
 
 
   const PORT = 4001; // siempre corre en este puerto
@@ -104,19 +127,19 @@ const SeeTaskForm = ({ task, queryPoll }) => {
 
 
 
-  const eliminarArchivo = async (idAchivo) => {
-    //console.log('archivo a eliminar', idAchivo)
+  const eliminarArchivo = async (item) => {
+    //console.log('relacion a eliminar', item)
     // Apollo
-    deleteUploadFileResolver({
-      variables: {
-        idFile: idAchivo,
-      },
+    deleteUploadDeTareaIframeResolver({
+      variables: { idTarea: item.tar_id },
     }).then(() => {
+      // setExisteUpload(false);
+      // form.resetFields(["nombreUpload"]);
     });
 
   };
 
-  console.log('task', task)
+  // console.log('task', task)
 
   return (
     <Row>
@@ -351,7 +374,7 @@ const SeeTaskForm = ({ task, queryPoll }) => {
                             }
                             okText="Borrar"
                             cancelText="Cerrar"
-                            onConfirm={() => eliminarArchivo(item?.up_id)}
+                            onConfirm={() => eliminarArchivo(item)}
                             placement="left"
                           >
                             <Button type="link" style={{ padding: "0px", margin: "0px" }}>
@@ -360,13 +383,11 @@ const SeeTaskForm = ({ task, queryPoll }) => {
                           </Popconfirm>
                         ]}
                       >
-                        <Skeleton avatar title loading={loadingFile} active>
                           <List.Item.Meta
                             className="item_meta"
-                            avatar={returnExtIcon(item.up_mimetype)} 
+                            avatar={returnExtIcon(item.up_mimetype)}
                             description={<Metadata metadata={item} />}
                           />
-                        </Skeleton>
                       </List.Item>
                     </div>
                   );

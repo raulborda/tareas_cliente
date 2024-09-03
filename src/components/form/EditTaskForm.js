@@ -20,6 +20,7 @@ import {
   Select,
   TimePicker,
   Upload,
+  List
 } from "antd";
 import Note from "../note/Note";
 import { TaskContext } from "../../context/TaskContext";
@@ -33,6 +34,7 @@ import { useContext, useEffect, useState } from "react";
 import returnExtIcon from "../../utils/returnExtIcon";
 import "./index.css";
 import OpenNotification from "../notification/OpenNotification";
+import Metadata from "../layout/Metadata";
 
 const EditTaskForm = ({ task, queryPoll }) => {
   const { setTaskDrawerVisible, noteContent, idUser } = useContext(TaskContext);
@@ -46,7 +48,27 @@ const EditTaskForm = ({ task, queryPoll }) => {
   const [existeUpload, setExisteUpload] = useState(task.up_id ? true : false);
   const [form] = Form.useForm();
 
-  const [deleteUploadDeTareaIframeResolver] = useMutation(DELETE_UPLOAD_TAREA);
+  const [deleteUploadDeTareaIframeResolver] = useMutation(DELETE_UPLOAD_TAREA, {
+    onCompleted: () => {
+      if (queryPoll) {
+        const { startPolling, stopPolling } = queryPoll;
+
+        startPolling(1000);
+
+        setTimeout(() => {
+          stopPolling();
+        }, 1000);
+      }
+      OpenNotification(
+        <h4>Archivo eliminado exitosamente</h4>,
+        null,
+        "topleft",
+        <CheckOutlined style={{ color: "green" }} />,
+        null
+      );
+      //setDeleteArchivo(true);
+    },
+  });
   const [updateTareaResolver] = useMutation(UPDATE_TAREA, {
     onCompleted: () => {
       if (queryPoll) {
@@ -79,16 +101,19 @@ const EditTaskForm = ({ task, queryPoll }) => {
   });
 
   const onFinish = (v) => {
-    let inputAdjunto;
-    if (v.upload) {
-      const extension = v.upload.file.name.split(".")[1];
+
+    const { upload } = v;
+
+    let inputAdjunto = null;
+    if (upload) {
+      //const extension = v.upload.file.name.split(".")[1];
       inputAdjunto = {
-        up_filename: v.upload.file.fileName,
-        up_mimetype: extension,
-        up_hashname: v.upload.file.filename,
+        up_filename: upload.file.response.fileName,
+        up_mimetype: upload.file.response.mimetype,
+        up_hashname: upload.file.response.filename,
         usu_id: task.usu_id,
         up_detalle: v.nombreUpload,
-        up_size: String(v.upload.file.size),
+        up_size: String(upload.file.response.size),
       };
     }
 
@@ -139,6 +164,7 @@ const EditTaskForm = ({ task, queryPoll }) => {
   };
 
   const confirm = (item) => {
+    // console.log('item on delete', item)
     deleteUploadDeTareaIframeResolver({
       variables: { idTarea: item.tar_id },
     }).then(() => {
@@ -197,6 +223,9 @@ const EditTaskForm = ({ task, queryPoll }) => {
     }
   }, [dataOrigenes, dataTipoTareas, dataUsuarios]);
 
+
+  // console.log('task', task)
+  
   return (
     <Row>
       <Col xs={24} style={{ justifyContent: "center", overflowX: "hidden" }}>
@@ -377,27 +406,73 @@ const EditTaskForm = ({ task, queryPoll }) => {
               </Upload.Dragger>
             </Form.Item>
           ) : (
-            <Card>
-              <div className="upload-wrapper">
-                <div className="upload-header">
-                  {returnExtIcon(task.up_mimetype)}
-                  <span>{task.up_filename}</span>
-                </div>
-                <div className="upload-footer">
-                  <Popconfirm
-                    placement="topLeft"
-                    title="¿Desea borrar el archivo?"
-                    okText="Si"
-                    cancelText="No"
-                    onConfirm={() => confirm(task)}
-                  >
-                    <DeleteOutlined
-                      style={{ fontSize: "20px", color: "red" }}
-                    />
-                  </Popconfirm>
-                </div>
-              </div>
-            </Card>
+            // <Card>
+            //   <div className="upload-wrapper">
+            //     <div className="upload-header">
+            //       {returnExtIcon(task.up_mimetype)}
+            //       <span>{task.up_filename}</span>
+            //     </div>
+            //     <div className="upload-footer">
+            //       <Popconfirm
+            //         placement="topLeft"
+            //         title="¿Desea borrar el archivo?"
+            //         okText="Si"
+            //         cancelText="No"
+            //         onConfirm={() => confirm(task)}
+            //       >
+            //         <DeleteOutlined
+            //           style={{ fontSize: "20px", color: "red" }}
+            //         />
+            //       </Popconfirm>
+            //     </div>
+            //   </div>
+            // </Card>
+
+            <List
+                  key="list"
+                  //loading={loadingFile}
+                  itemLayout="horizontal"
+                  dataSource={[task]}
+                  renderItem={(item, idx) => {
+                    return (
+                      <div>
+                        <List.Item key={idx}
+                          actions={[
+                            // <DownloadOutlined onClick={() => handleClick(item)} style={{ color: "#56b43c" }} />,
+                            <Popconfirm
+                              title={
+                                <div
+                                  style={{
+                                    display: "flex",
+                                    flexDirection: "column",
+                                    width: 250,
+                                    gap: 4,
+                                  }}
+                                >
+                                  <label>¿Deseas eliminar el archivo <b>{item?.up_filename}</b>?</label>
+                                </div>
+                              }
+                              okText="Borrar"
+                              cancelText="Cerrar"
+                              onConfirm={() => confirm(item)}
+                              placement="left"
+                            >
+                              <Button type="link" style={{ padding: "0px", margin: "0px" }}>
+                                <DeleteOutlined style={{ color: "red" }} />
+                              </Button>
+                            </Popconfirm>
+                          ]}
+                        >
+                          <List.Item.Meta
+                            className="item_meta"
+                            avatar={returnExtIcon(item.up_mimetype)} 
+                            description={<Metadata metadata={item} />}
+                          />
+                        </List.Item>
+                      </div>
+                    );
+                  }}
+                  />
           )}
 
 <Row gutter={[8, 8]}>
