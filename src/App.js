@@ -72,7 +72,7 @@ const App = () => {
     }
   }, []);
 
-  console.log('version modulo-tareas_cliente: 27.08.24');
+  console.log('version modulo-tareas_cliente: 27.08.24v2');
 
   return (
     <ApolloProvider client={apolloClient}>

@@ -89,17 +89,14 @@ const NewTaskForm = ({ queryPoll }) => {
   const PROTOCOL = window.location.protocol;
   const HOSTNAME = window.location.hostname;
   const URL = `${PROTOCOL}//${HOSTNAME}:${PORT}`;
-  // * Original
-  //action: "http://beeapp.binamics.com.ar:4001/files",
-  const actions = `${URL}/files`;
-  //console.log(actions);
+
   const props = {
     //TODO : URL DINAMICA
     name: "archivo",
     multiple: false,
     uploaded: false,
-    // action: `${URL}/files`,
-    action: "http://beeapp.binamics.com.ar:4001/files",
+    action: `${URL}/files`, //Produccion
+    // action: "http://beeapp.binamics.com.ar:4001/files", //Desarrollo
     fileList: fList,
     onChange(info) {
       setFlist(info.fileList.slice(-1));

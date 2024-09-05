@@ -173,12 +173,18 @@ const EditTaskForm = ({ task, queryPoll }) => {
     });
   };
 
+  const PORT = "4002";
+  const PROTOCOL = window.location.protocol;
+  const HOSTNAME = window.location.hostname;
+  const URL = `${PROTOCOL}//${HOSTNAME}:${PORT}`;
+
   const props = {
     //TODO : URL DINAMICA
     name: "archivo",
     multiple: false,
     uploaded: false,
-    action: "http://beeapp.binamics.com.ar:4001/files",
+    action: `${URL}/files`, //Produccion
+    //action: "http://beeapp.binamics.com.ar:4001/files", //Desarrollo
     fileList: fList,
     onChange(info) {
       setFlist(info.fileList.slice(-1));
